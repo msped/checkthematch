@@ -29,7 +29,7 @@ function App() {
           <Container maxWidth="md">
             <Routes>
               <Route exact path="/" element={<Home/>}/>
-              <Route path="/league/:league" element={<League/>}/>
+              <Route exact path="/league/:league_id" element={<League/>}/>
             </Routes>
           </Container>
         </Box>
