@@ -65,45 +65,46 @@ export default function Header() {
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static" theme={theme}>
             <Toolbar>
-            <Typography
-                variant="h6"
-                noWrap
-                component="div"
-                sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-            >
-                Should I watch it?
-            </Typography>
+              <Typography
+                  variant="h6"
+                  noWrap
+                  component="div"
+                  sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+              >
+                  Should I watch it?
+              </Typography>
 
-            <Autocomplete
-              options={results}
-              onInputChange={(e)=>setTerm(e.target.value)}
-              style={{ width: '30ch' }}
-              clearOnBlur={true}
-              freeSolo
-              open={term ? true : false}
-              renderOption={(props, option) => (
-                <li {...props}>
-                  <Grid container spacing={2}>
-                    <Grid item xs={2}>
-                      <img 
-                        src={option.country.flag}
-                        alt={option.country.name}
-                        style={{ maxWidth: '100%', height: 'auto'}}
-                      />
+              <Autocomplete
+                options={results}
+                onInputChange={(e)=>setTerm(e.target.value)}
+                style={{ width: '30ch' }}
+                clearOnBlur={true}
+                blurOnSelect={true}
+                freeSolo
+                open={term ? true : false}
+                renderOption={(props, option) => (
+                  <li {...props}>
+                    <Grid container spacing={2}>
+                      <Grid item xs={2}>
+                        <img 
+                          src={option.country.flag}
+                          alt={option.country.name}
+                          style={{ maxWidth: '100%', height: 'auto'}}
+                        />
+                      </Grid>
+                      <Grid item xs={10}>
+                        <div>{option.league.name}</div>
+                      </Grid>
                     </Grid>
-                    <Grid item xs={10}>
-                      <div>{option.league.name}</div>
-                    </Grid>
-                  </Grid>
-                </li>
-              )}
-              renderInput={(params) => (
-                <TextField {...params} placeholder="Search League"/>
-                
-              )}
-              getOptionLabel={(option) => option.league.name}
-              onChange={(e, v)=>HandleNavigation(v)}
-            />
+                  </li>
+                )}
+                renderInput={(params) => (
+                  <TextField {...params} placeholder="Search League"/>
+                  
+                )}
+                getOptionLabel={(option) => option.league.name}
+                onChange={(e, v)=>HandleNavigation(v)}
+              />
             </Toolbar>
         </AppBar>
         </Box>
