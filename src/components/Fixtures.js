@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import Grid from '@mui/material/Grid';
-
+import Button from '@mui/material/Button'
 import Fixture from '../components/Fixture'
 
 export default function Fixtures({leagueID, season}) {
@@ -28,12 +28,24 @@ export default function Fixtures({leagueID, season}) {
     };
 
     return (
-        <Grid container spacing={2}>
+        <Grid container spacing={2} alignItems="center" justifyContent="center">
             {fixtures.map((item) => (
             <Grid item key={item.id} xs={12}>
-                <Fixture fixture={item} />
+                <Fixture key={item.id} fixture={item} />
             </Grid>
             ))}
+            <Grid item xs={12}>
+                <div className='align-center'>
+                    <Button
+                        size='large'
+                        onClick={showMore}
+                        color='primary'
+                        variant='contained'
+                    >
+                        Show More
+                    </Button>
+                </div>
+            </Grid>
         </Grid>
     )
 }
