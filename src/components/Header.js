@@ -9,9 +9,6 @@ import Autocomplete from '@mui/material/Autocomplete';
 import Grid from '@mui/material/Grid';
 import { createTheme } from '@mui/material/styles'
 import { useNavigate } from 'react-router-dom'
-import { Link } from '@mui/material';
-;
-
 
 const theme = createTheme({
   palette: {
@@ -37,7 +34,7 @@ export default function Header() {
             'x-rapidapi-key': 'f89acc49f0mshfc233a01bb1f12dp1cdc9cjsndf01fbd6276c'
           }
         })
-        if (data.response.length > 0) {
+        if (data.response.length > 0 && term !== '') {
           let newResponse = data.response.slice(0, 5)
           setResults(newResponse.slice(0, 5))
         }
@@ -85,6 +82,7 @@ export default function Header() {
                 clearOnBlur={true}
                 blurOnSelect={true}
                 freeSolo
+                disableClearable={true}
                 open={term ? true : false}
                 renderOption={(props, option) => (
                   <li {...props}>
