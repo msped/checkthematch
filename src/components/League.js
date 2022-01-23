@@ -6,7 +6,6 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import { useParams } from 'react-router-dom'
-import { makeStyles } from '@mui/styles';
 
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
@@ -15,10 +14,6 @@ import Stack from '@mui/material/Stack';
 
 import Fixtures from '../components/Fixtures'
 import Loader from '../components/Loader'
-
-const useStyles = makeStyles((theme) => {
-    
-})
 
 export default function League() {
     const currentYear = new Date().getFullYear()
