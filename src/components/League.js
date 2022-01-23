@@ -22,7 +22,6 @@ const useStyles = makeStyles((theme) => {
 
 export default function League() {
     const currentYear = new Date().getFullYear()
-    // currentYear.toString()
     const startYear = new Date('2010-01-01')
     const endYear = new Date(`${currentYear}-01-01`)
     const [league, setLeague] = useState([])
@@ -34,13 +33,16 @@ export default function League() {
     useEffect(() => {
         const search = async () => {
             const { data }  = await axios.get('https://api-football-v1.p.rapidapi.com/v3/leagues', {
-              params: { id: league_id },
+              params: { id: league_id, current: 'true' },
               headers: {
                 'x-rapidapi-host': 'api-football-v1.p.rapidapi.com',
                 'x-rapidapi-key': 'f89acc49f0mshfc233a01bb1f12dp1cdc9cjsndf01fbd6276c'
               }
             })
             setLeague(data.response[0])
+            const currentSeason = data.response[0].seasons[0].year
+            let newYear = new Date(currentSeason.toString()).getFullYear()
+            setSeason(newYear.toString())
             setLoading(false)
         }
         search()
@@ -106,10 +108,10 @@ export default function League() {
     return (
         <Grid container spacing={1}>
             <Grid item xs={12}>
-                { loading ? <Loader /> : leagueInfo()}
+                { loading ? <Stack alignItems="center"><Loader /></Stack> : leagueInfo()}
             </Grid>
             <Grid item xs={12}>
-                <Fixtures leagueID={league_id} season={season}/>
+                { loading ? <Stack alignItems="center"><Loader /></Stack> : <Fixtures leagueID={league_id} season={season}/> }
             </Grid>
         </Grid>
     )
