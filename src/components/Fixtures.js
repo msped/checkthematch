@@ -3,6 +3,7 @@ import axios from 'axios'
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button'
 import Fixture from '../components/Fixture'
+import Stack from '@mui/material/Stack';
 
 export default function Fixtures({leagueID, season}) {
     const [fixtures, setFixtures] = useState([])
@@ -22,6 +23,10 @@ export default function Fixtures({leagueID, season}) {
         search()
     }, [leagueID, season, lastAmount])
 
+    useEffect(() => {
+        setLastAmount(10)
+    }, [leagueID])
+
     const showMore = () => {
         let newAmount = lastAmount + 10;
         setLastAmount(newAmount)
@@ -35,7 +40,7 @@ export default function Fixtures({leagueID, season}) {
             </Grid>
             ))}
             <Grid item xs={12}>
-                <div className='align-center'>
+                <Stack alignItems='center'>
                     <Button
                         size='large'
                         onClick={showMore}
@@ -44,7 +49,7 @@ export default function Fixtures({leagueID, season}) {
                     >
                         Show More
                     </Button>
-                </div>
+                </Stack>
             </Grid>
         </Grid>
     )
