@@ -9,6 +9,9 @@ import Autocomplete from '@mui/material/Autocomplete';
 import Grid from '@mui/material/Grid';
 import { createTheme } from '@mui/material/styles'
 import { useNavigate } from 'react-router-dom'
+import { Link } from '@mui/material';
+;
+
 
 const theme = createTheme({
   palette: {
@@ -55,9 +58,11 @@ export default function Header() {
   }, [term])
   
   const HandleNavigation = (value) => {
-    const path = '/league/' + value.league.id
-    nav(path)
-    setTerm('')
+    if (value !== '' || value !== undefined || value !== null) {
+      const path = '/league/' + value.league.id
+      nav(path)
+      setTerm('')
+    }
   }
 
   return (
@@ -76,7 +81,6 @@ export default function Header() {
 
               <Autocomplete
                 options={results}
-                onInputChange={(e)=>setTerm(e.target.value)}
                 style={{ width: '30ch' }}
                 clearOnBlur={true}
                 blurOnSelect={true}
@@ -99,11 +103,11 @@ export default function Header() {
                   </li>
                 )}
                 renderInput={(params) => (
-                  <TextField {...params} placeholder="Search League"/>
+                  <TextField {...params} onChange={(e) => setTerm(e.target.value)} placeholder="Search League"/>
                   
                 )}
                 getOptionLabel={(option) => option.league.name}
-                onChange={(e, v)=>HandleNavigation(v)}
+                onChange={(e, v) => HandleNavigation(v)}
               />
             </Toolbar>
         </AppBar>
