@@ -19,3 +19,8 @@ code {
 .align-center {
   text-align: center;
 }
+
+.img-fluid {
+  width: 100%;
+  height: auto;
+}
