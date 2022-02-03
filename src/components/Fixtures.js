@@ -34,9 +34,9 @@ export default function Fixtures({leagueID, season}) {
 
     return (
         <Grid container spacing={2} alignItems="center" justifyContent="center">
-            {fixtures.map((item) => (
-            <Grid item key={item.id} xs={12}>
-                <Fixture key={item.id} fixture={item} />
+            {fixtures.map((fixture) => (
+            <Grid item key={fixture.fixture.id} xs={12}>
+                <Fixture key={fixture.id} fixture={fixture} />
             </Grid>
             ))}
             <Grid item xs={12}>
