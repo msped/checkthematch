@@ -34,7 +34,7 @@ export default function Header() {
             'x-rapidapi-key': 'f89acc49f0mshfc233a01bb1f12dp1cdc9cjsndf01fbd6276c'
           }
         })
-        if (data.response.length > 0) {
+        if (data.response.length > 0 && term !== '') {
           let newResponse = data.response.slice(0, 5)
           setResults(newResponse.slice(0, 5))
         }
@@ -55,9 +55,11 @@ export default function Header() {
   }, [term])
   
   const HandleNavigation = (value) => {
-    const path = '/league/' + value.league.id
-    nav(path)
-    setTerm('')
+    if (value !== '' || value !== undefined || value !== null) {
+      const path = '/league/' + value.league.id
+      nav(path)
+      setTerm('')
+    }
   }
 
   return (
@@ -65,45 +67,46 @@ export default function Header() {
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static" theme={theme}>
             <Toolbar>
-            <Typography
-                variant="h6"
-                noWrap
-                component="div"
-                sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-            >
-                Should I watch it?
-            </Typography>
+              <Typography
+                  variant="h6"
+                  noWrap
+                  component="div"
+                  sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+              >
+                  Should I watch it?
+              </Typography>
 
-            <Autocomplete
-              options={results}
-              onInputChange={(e)=>setTerm(e.target.value)}
-              style={{ width: '30ch' }}
-              clearOnBlur={true}
-              freeSolo
-              open={term ? true : false}
-              renderOption={(props, option) => (
-                <li {...props}>
-                  <Grid container spacing={2}>
-                    <Grid item xs={2}>
-                      <img 
-                        src={option.country.flag}
-                        alt={option.country.name}
-                        style={{ maxWidth: '100%', height: 'auto'}}
-                      />
+              <Autocomplete
+                options={results}
+                style={{ width: '30ch' }}
+                clearOnBlur={true}
+                blurOnSelect={true}
+                freeSolo
+                disableClearable={true}
+                open={term ? true : false}
+                renderOption={(props, option) => (
+                  <li {...props}>
+                    <Grid container spacing={2}>
+                      <Grid item xs={2}>
+                        <img 
+                          src={option.country.flag}
+                          alt={option.country.name}
+                          style={{ maxWidth: '100%', height: 'auto'}}
+                        />
+                      </Grid>
+                      <Grid item xs={10}>
+                        <div>{option.league.name}</div>
+                      </Grid>
                     </Grid>
-                    <Grid item xs={10}>
-                      <div>{option.league.name}</div>
-                    </Grid>
-                  </Grid>
-                </li>
-              )}
-              renderInput={(params) => (
-                <TextField {...params} placeholder="Search League"/>
-                
-              )}
-              getOptionLabel={(option) => option.league.name}
-              onChange={(e, v)=>HandleNavigation(v)}
-            />
+                  </li>
+                )}
+                renderInput={(params) => (
+                  <TextField {...params} onChange={(e) => setTerm(e.target.value)} placeholder="Search League"/>
+                  
+                )}
+                getOptionLabel={(option) => option.league.name}
+                onChange={(e, v) => HandleNavigation(v)}
+              />
             </Toolbar>
         </AppBar>
         </Box>
