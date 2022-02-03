@@ -1,11 +1,11 @@
-import axios from 'axios'
-import React, { useState } from 'react'
+import React from 'react'
 import { makeStyles, useTheme } from '@mui/styles';
-import Button from '@mui/material/Button'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Grid';
+
+import Statistics from '../components/Statistics';
 
 import { format } from 'date-fns'
 
@@ -120,36 +120,9 @@ function Fixture({fixture}) {
                                         </span>
                                     </div>
                                 }
-                                {/*<Button
-                                    variant="contained" 
-                                    color="primary" 
-                                    className={classes.statsButton}
-                                    onClick={handleDialogOpen}
-                                >
-                                    See match statistics
-                                </Button>
-                                <MatchStats
-                                    isOpen={isOpen}
-                                    handleClose={handleDialogClose}
-                                    title="Match Statistics"
-                                />
-                                <Dialog
-                                    fullWidth
-                                    maxWidth='md'
-                                    open={isOpen}
-                                    onClose={handleDialogClose}
-                                    aria-labelledby='max-width-dialog-title'
-                                >
-                                    <DialogTitle id="max-width-dialog-title">See match statistics</DialogTitle>
-                                    <DialogContent>
-                                        {stats}
-                                    </DialogContent>
-                                    <DialogActions>
-                                        <Button onClick={handleDialogClose} color='primary'>
-                                            Close
-                                        </Button>
-                                    </DialogActions>
-                                </Dialog> */}
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <Statistics fixture={fixture.id}/>
                                 </Grid>
                             </Grid>
                         </CardContent>
