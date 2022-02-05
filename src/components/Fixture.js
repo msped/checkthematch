@@ -122,7 +122,7 @@ function Fixture({fixture}) {
                                 }
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <Statistics fixture={fixture.id}/>
+                                    <Statistics fixture={fixture.fixture.id}/>
                                 </Grid>
                             </Grid>
                         </CardContent>
