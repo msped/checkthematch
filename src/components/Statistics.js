@@ -1,4 +1,5 @@
-import React, { useState, Fragment } from 'react';
+import axios from 'axios'
+import React, { useState, Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -11,8 +12,10 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
 
-import Players from '../components/Players';
+import Loader from '../components/Loader'
+import MatchPlayers from '../components/MatchPlayers';
 import MatchStats from '../components/MatchStats';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -52,12 +55,34 @@ function TabPanel(props) {
     };
   }
 
-export default function Statistics({fixture}) {
+export default function Statistics({ fixture }) {
+    const [fixtureData, setFixtureData] = useState([])
     const [open, setOpen] = useState(false);
-    const [value, setValue] = useState(0);
+    const [value, setValue] = useState();
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+      const search = async () => {
+        const { data }  = await axios.get('https://api-football-v1.p.rapidapi.com/v3/fixtures', {
+          params: { id: fixture },
+          headers: {
+            'x-rapidapi-host': 'api-football-v1.p.rapidapi.com',
+            'x-rapidapi-key': 'f89acc49f0mshfc233a01bb1f12dp1cdc9cjsndf01fbd6276c'
+          }
+        })
+        console.log(data.response)
+        setFixtureData(data.response[0])
+        setLoading(false)
+      }
+      if (open) {
+        search()
+      }
+      
+    }, [open])
 
     const handleDialogToggle = () => {
-        setOpen(!open )
+      setOpen(!open)
+      setValue(0)
     }
 
     const handleTabToggle = (event, newValue) => {
@@ -97,23 +122,26 @@ export default function Statistics({fixture}) {
                         >
                             <CloseIcon />
                         </IconButton>
-                        
                         <TabNav value={value}/>
-                    
                     </Toolbar>
                     
                 </AppBar>
-                <Box sx={{ width: '100%' }}>
-                    <TabPanel value={value} index={0}>
-                        <MatchStats />
-                    </TabPanel>
-                    <TabPanel value={value} index={1}>
-                        <Players />
-                    </TabPanel>
-                    {/* <TabPanel value={value} index={2}>
-                        Item Three
-                    </TabPanel> */}
-                </Box>
+                { loading ? 
+                    <Stack alignItems="center"><Loader /></Stack>
+                : (
+                    <Box sx={{ width: '100%' }}>
+                        <TabPanel value={value} index={0}>
+                            <MatchStats stats={fixtureData.statistics} />
+                        </TabPanel>
+                        <TabPanel value={value} index={1}>
+                            <MatchPlayers players={fixtureData.lineups} />
+                        </TabPanel>
+                        {/* <TabPanel value={value} index={2}>
+                            Item Three
+                        </TabPanel> */}
+                    </Box>
+                    )
+                }
             </Dialog>
         </Fragment>
     )
