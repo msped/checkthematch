@@ -44,7 +44,6 @@ function a11yProps(index) {
 
 export default function MatchStats({ stats }) {
   const [tab, setTab] = useState(0);
-  console.log("match stats", stats)
 
   const handleChange = (event, newValue) => {
     setTab(newValue);
