@@ -1,82 +1,75 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
+import React from 'react';
 import Box from '@mui/material/Box';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 import Avatar from '@mui/material/Avatar';
-import Stack from '@mui/material/Stack';
-
-import TeamStats from '../components/TeamStats'
-
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          {children}
-        </Box>
-      )}
-    </div>
-  );
-}
-
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.number.isRequired,
-  value: PropTypes.number.isRequired,
-};
-
-function a11yProps(index) {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
-  };
-}
+import Typography from '@mui/material/Typography'
 
 export default function MatchStats({ stats }) {
-  const [tab, setTab] = useState(0);
 
-  const handleChange = (event, newValue) => {
-    setTab(newValue);
-  };
+  const home = stats[0]
+  const away = stats[1]
 
   return (
-    <Box sx={{ width: '100%' }}>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={tab} onChange={handleChange} aria-label="basic tabs example" centered>
-          <Tab label={
-            <React.Fragment>
-              <Stack direction="row" spacing={2}>
-                <Avatar alt={stats[0].team.name} src={stats[0].team.logo} />
-                <Typography component="span">Home</Typography>
-              </Stack>
-            </React.Fragment>
-          } {...a11yProps(0)} />
-          <Tab label={
-            <React.Fragment>
-              <Stack direction="row" spacing={2}>
-                <Typography component='span'>Away</Typography>
-                <Avatar alt={stats[1].team.name} src={stats[1].team.logo} />
-              </Stack>
-            </React.Fragment>
-          } {...a11yProps(1)} />
-        </Tabs>
-      </Box>
-      <TabPanel value={tab} index={0}>
-        <TeamStats stats={stats[0].statistics} />
-      </TabPanel>
-      <TabPanel value={tab} index={1}>
-        <TeamStats stats={stats[1].statistics} />
-      </TabPanel>
+    <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      minHeight="100vh"
+    >
+      <TableContainer sx={{maxWidth: '750px' }} component={Paper}>
+        <Table  aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell align='center'>
+                <Box
+                  display="flex"
+                  justifyContent="center"
+                  alignItems="center"
+                >
+                  <Avatar alt={home.team.name} src={home.team.logo} />
+                </Box>
+              </TableCell>
+              <TableCell align="center">
+                <Typography variant='h4'>
+                  Statistics
+                </Typography>
+              </TableCell>
+              <TableCell align="center">
+              <Box
+                  display="flex"
+                  justifyContent="center"
+                  alignItems="center"
+                >
+                  <Avatar alt={away.team.name} src={away.team.logo} />
+                </Box>
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {home.statistics.map((item, i) => (
+              <TableRow
+                key={item.type}
+                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              >
+                <TableCell component="th" scope="row" align='center'>
+                  {item.value === null ? 0 : item.value}
+                </TableCell>
+                <TableCell align="center">{item.type}</TableCell>
+                  <TableCell align="center">
+                  {away.statistics[i].value === null ?
+                  0 : away.statistics[i].value}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </Box>
   );
 }
