@@ -70,7 +70,6 @@ export default function Statistics({ fixture }) {
             'x-rapidapi-key': 'f89acc49f0mshfc233a01bb1f12dp1cdc9cjsndf01fbd6276c'
           }
         })
-        console.log(data.response)
         setFixtureData(data.response[0])
         setLoading(false)
       }
@@ -134,7 +133,7 @@ export default function Statistics({ fixture }) {
                             <MatchStats stats={fixtureData.statistics} />
                         </TabPanel>
                         <TabPanel value={value} index={1}>
-                            <MatchPlayers players={fixtureData.lineups} />
+                            <MatchPlayers players={fixtureData.lineups} events={fixtureData.events}/>
                         </TabPanel>
                         {/* <TabPanel value={value} index={2}>
                             Item Three
