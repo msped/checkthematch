@@ -8,7 +8,8 @@ import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 
 import TeamPlayers from '../components/TeamPlayers'
-import Loader from '../components/Loader'
+
+import { GetRequiredEvents } from '../utlis'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -43,47 +44,55 @@ function a11yProps(index) {
   };
 }
 
-
-export default function Players({ players }) {
+export default function Players({ players, events }) {
   const [tab, setTab] = useState(0);
-  const [loading, setLoading] = useState(false)
 
   const handleChange = (event, newValue) => {
     setTab(newValue);
   };
 
+  const filteredEvents = GetRequiredEvents(events)
+
   return (
-    loading ? (
-      <Stack alignItems="center"><Loader /></Stack>
-    ) : (
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={tab} onChange={handleChange} aria-label="basic tabs example" centered>
           <Tab label={
             <React.Fragment>
               <Stack direction="row" spacing={2}>
-                <Avatar alt={players[0].team.name} src={players[0].team.logo} />
-                <Typography component="span">Home</Typography>
+                <Box
+                  display="flex"
+                  justifyContent="center"
+                  alignItems="center"
+                >
+                  <Avatar alt={players[0].team.name} src={players[0].team.logo} sx={{ marginX: 1.5 }} />
+                  <Typography component="span">Home</Typography>
+                </Box>
               </Stack>
             </React.Fragment>
           } {...a11yProps(0)} />
           <Tab label={
             <React.Fragment>
               <Stack direction="row" spacing={2}>
-                <Typography component='span'>Away</Typography>
-                <Avatar alt={players[1].team.name} src={players[1].team.logo} />
+                <Box 
+                  display="flex"
+                  justifyContent="center"
+                  alignItems="center"
+                >
+                  <Typography component='span'>Away</Typography>
+                  <Avatar alt={players[1].team.name} src={players[1].team.logo} sx={{ marginX: 1.5 }} />
+                </Box>
               </Stack>
             </React.Fragment>
           } {...a11yProps(1)} />
         </Tabs>
       </Box>
       <TabPanel value={tab} index={0}>
-        <TeamPlayers lineup={players[0]} />
+        <TeamPlayers lineup={players[0]} events={filteredEvents} />
       </TabPanel>
       <TabPanel value={tab} index={1}>
-        <TeamPlayers lineup={players[1]} />
+        <TeamPlayers lineup={players[1]} events={filteredEvents} />
       </TabPanel>
     </Box>
-    )
   );
 }
