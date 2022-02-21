@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Typography, Stack, Box, Avatar } from '@mui/material'
+import { Grid, Typography, Stack, Box } from '@mui/material'
 
 import Player from '../components/Player'
 
