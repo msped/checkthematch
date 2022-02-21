@@ -30,8 +30,8 @@ export default function League() {
             const { data }  = await axios.get('https://api-football-v1.p.rapidapi.com/v3/leagues', {
               params: { id: league_id, current: 'true' },
               headers: {
-                'x-rapidapi-host': 'api-football-v1.p.rapidapi.com',
-                'x-rapidapi-key': 'f89acc49f0mshfc233a01bb1f12dp1cdc9cjsndf01fbd6276c'
+                'x-rapidapi-host': process.env.REACT_APP_API_HOST,
+                'x-rapidapi-key': process.env.REACT_APP_API_KEY
               }
             })
             setLeague(data.response[0])
