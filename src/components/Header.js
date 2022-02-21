@@ -101,8 +101,19 @@ export default function Header() {
                   </li>
                 )}
                 renderInput={(params) => (
-                  <TextField {...params} onChange={(e) => setTerm(e.target.value)} placeholder="Search League"/>
-                  
+                  <TextField
+                    {...params}
+                    onChange={(e) => setTerm(e.target.value)}
+                    placeholder="Search League"
+                    inputProps={{
+                      ...params.inputProps,
+                      onKeyDown: (e) => {
+                            if (e.key === 'Enter') {
+                              e.stopPropagation();
+                            }
+                      },
+                    }}
+                  />
                 )}
                 getOptionLabel={(option) => option.league.name}
                 onChange={(e, v) => HandleNavigation(v)}
