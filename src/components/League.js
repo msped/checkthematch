@@ -13,7 +13,8 @@ import DatePicker from '@mui/lab/DatePicker';
 import Stack from '@mui/material/Stack';
 
 import Fixtures from '../components/Fixtures'
-import Loader from '../components/Loader'
+import LeagueSkeleton from '../components/LeagueSkeleton'
+import FixturesSkeleton from '../components/FixturesSkeleton'
 
 export default function League() {
     const currentYear = new Date().getFullYear()
@@ -34,11 +35,14 @@ export default function League() {
                 'x-rapidapi-key': process.env.REACT_APP_API_KEY
               }
             })
-            setLeague(data.response[0])
-            const currentSeason = data.response[0].seasons[0].year
-            let newYear = new Date(currentSeason.toString()).getFullYear()
-            setSeason(newYear.toString())
-            setLoading(false)
+            setTimeout(function(){
+                setLeague(data.response[0])
+                const currentSeason = data.response[0].seasons[0].year
+                let newYear = new Date(currentSeason.toString()).getFullYear()
+                setSeason(newYear.toString())
+                setLoading(false)
+            }, 2500)
+            
         }
         search()
       }, [league_id])
@@ -103,10 +107,20 @@ export default function League() {
     return (
         <Grid container spacing={1}>
             <Grid item xs={12}>
-                { loading ? <Stack alignItems="center"><Loader /></Stack> : leagueInfo()}
+                { loading ? <Stack alignItems="center"><LeagueSkeleton /></Stack> : leagueInfo()}
             </Grid>
             <Grid item xs={12}>
-                { loading ? <Stack alignItems="center"><Loader /></Stack> : <Fixtures leagueID={league_id} season={season}/> }
+                { loading ? 
+                    <Stack spacing={2}>
+                        <FixturesSkeleton />
+                        <FixturesSkeleton />
+                        <FixturesSkeleton />
+                        <FixturesSkeleton />
+                    </Stack>
+                    
+                    : 
+                    <Fixtures leagueID={league_id} season={season}/>
+                }
             </Grid>
         </Grid>
     )
