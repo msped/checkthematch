@@ -35,14 +35,11 @@ export default function League() {
                 'x-rapidapi-key': process.env.REACT_APP_API_KEY
               }
             })
-            setTimeout(function(){
-                setLeague(data.response[0])
-                const currentSeason = data.response[0].seasons[0].year
-                let newYear = new Date(currentSeason.toString()).getFullYear()
-                setSeason(newYear.toString())
-                setLoading(false)
-            }, 2500)
-            
+            setLeague(data.response[0])
+            const currentSeason = data.response[0].seasons[0].year
+            let newYear = new Date(currentSeason.toString()).getFullYear()
+            setSeason(newYear.toString())
+            setLoading(false)
         }
         search()
       }, [league_id])
