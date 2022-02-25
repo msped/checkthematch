@@ -14,7 +14,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 
-import Loader from '../components/Loader'
+import StatisticsSkeleton from '../components/StatisticsSkeleton'
 import MatchPlayers from '../components/MatchPlayers';
 import MatchStats from '../components/MatchStats';
 
@@ -126,7 +126,7 @@ export default function Statistics({ fixture }) {
                     
                 </AppBar>
                 { loading ? 
-                    <Stack alignItems="center"><Loader /></Stack>
+                    <StatisticsSkeleton />
                 : (
                     <Box sx={{ width: '100%' }}>
                         <TabPanel value={value} index={0}>

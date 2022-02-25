@@ -13,7 +13,8 @@ import DatePicker from '@mui/lab/DatePicker';
 import Stack from '@mui/material/Stack';
 
 import Fixtures from '../components/Fixtures'
-import Loader from '../components/Loader'
+import LeagueSkeleton from '../components/LeagueSkeleton'
+import FixturesSkeleton from '../components/FixturesSkeleton'
 
 export default function League() {
     const currentYear = new Date().getFullYear()
@@ -103,10 +104,20 @@ export default function League() {
     return (
         <Grid container spacing={1}>
             <Grid item xs={12}>
-                { loading ? <Stack alignItems="center"><Loader /></Stack> : leagueInfo()}
+                { loading ? <LeagueSkeleton /> : leagueInfo()}
             </Grid>
             <Grid item xs={12}>
-                { loading ? <Stack alignItems="center"><Loader /></Stack> : <Fixtures leagueID={league_id} season={season}/> }
+                { loading ? 
+                    <Stack spacing={2}>
+                        <FixturesSkeleton />
+                        <FixturesSkeleton />
+                        <FixturesSkeleton />
+                        <FixturesSkeleton />
+                    </Stack>
+                    
+                    : 
+                    <Fixtures leagueID={league_id} season={season}/>
+                }
             </Grid>
         </Grid>
     )
