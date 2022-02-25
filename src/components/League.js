@@ -104,7 +104,7 @@ export default function League() {
     return (
         <Grid container spacing={1}>
             <Grid item xs={12}>
-                { loading ? <Stack alignItems="center"><LeagueSkeleton /></Stack> : leagueInfo()}
+                { loading ? <LeagueSkeleton /> : leagueInfo()}
             </Grid>
             <Grid item xs={12}>
                 { loading ? 
