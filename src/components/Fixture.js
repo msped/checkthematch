@@ -4,6 +4,8 @@ import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack'
+import Box from '@mui/material/Box'
 
 import Statistics from '../components/Statistics';
 
@@ -75,7 +77,23 @@ function Fixture({fixture}) {
                             Away
                         </Typography>
                     </Grid>
+                    <Grid item xs={5}>
+                        <Typography className={classes.textCenter}>
+                            {fixture.teams.home.name}
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={2}>
+                        <Typography className={classes.textCenter}>
+                             v
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={5}>
+                        <Typography className={classes.textCenter}>
+                            {fixture.teams.away.name}
+                        </Typography>
+                    </Grid>
                 </Grid>
+
                 <Grid container spacing={1} className={classes.content}>
                     <Grid item xs={3} className={classes.textCenter}>
                         <img 
@@ -88,47 +106,32 @@ function Fixture({fixture}) {
                     <Grid item xs={6} className={classes.textCenter}>
                         <CardContent className={classes.cardContent}>
                             <Grid container spacing={1}>
-                                <Grid item xs={12} md={5}>
-                                    <Typography variant="h5" className={classes.team}>
-                                        {fixture.teams.home.name}
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs={12} md={2}>
-                                    <Typography variant="h5" className={classes.textCenter}>
-                                         v 
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs={12} md={5}>
-                                    <Typography variant="h5" className={classes.team}>
-                                        {fixture.teams.away.name}
-                                    </Typography>
-                                </Grid>
                                 <Grid item xs={12}>
                                     {fixture.fixture.venue.name}, {fixture.fixture.venue.city}
                                 </Grid>
                                 <Grid item xs={12} className={classes.textCenter}>
                                 {(fixture.score.fulltime.home + fixture.score.fulltime.away === 0)
                                     ?
-                                    <p>This ended with no goals after Full Time, probably shouldn't watch this match.</p>
+                                    <Typography variant="body1">This ended with no goals after Full Time, probably shouldn't watch this match.</Typography>
                                     :
-                                    <div>
-                                        <span className="d-block">
-                                            HT Goal Amount: {fixture.score.halftime.home + fixture.score.halftime.away}
-                                        </span>
-                                        <span className="d-block">
-                                            FT Goal Amount: {fixture.score.fulltime.home + fixture.score.fulltime.away}
-                                        </span>
-                                    </div>
+                                    <Grid container spacing={1}>
+                                        <Grid item xs={6}>
+                                            <Typography>Half Time: {fixture.score.halftime.home + fixture.score.halftime.away}</Typography>
+                                        </Grid>
+                                        <Grid item xs={6}>
+                                            <Typography>Full Time: {fixture.score.fulltime.home + fixture.score.fulltime.away}</Typography>
+                                        </Grid>
+                                    </Grid>
                                 }
                                 </Grid>
-                                <Grid item xs={12}>
+                                <Grid item xs={12} sx={{ marginTop: 1.5 }}>
                                     <Statistics fixture={fixture.fixture.id}/>
                                 </Grid>
                             </Grid>
                         </CardContent>
                     </Grid>
                     <Grid item xs={3} className={classes.textCenter}>
-                        <img 
+                        <img
                             src={fixture.teams.away.logo} 
                             alt={fixture.teams.away.name}
                             className="img-fluid p-3"
