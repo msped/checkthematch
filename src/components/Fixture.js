@@ -59,7 +59,7 @@ function Fixture({fixture}) {
     return (
         <div className={classes.root}>
             <Card>
-                <Grid container spacing={1} className={classes.fixtureHeading}>
+                <Grid container spacing={1} className={classes.fixtureHeading} sx={{ paddingBottom: 1 }}>
                     <Grid item xs={3} className={classes.fixtureHeadingContent}>
                         <Typography variant="subtitle1" color="textSecondary">
                             Home
