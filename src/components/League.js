@@ -49,35 +49,35 @@ export default function League() {
             <Card>
                 <CardContent>
                     <Grid container spacing={1}>
-                        <Grid item xs={2} md={2}>
+                        <Grid item xs={4} md={2}>
                             <img 
                                 src={league.league.logo}
                                 alt={league.league.name}
                                 style={{ maxWidth: '100%', height: 'auto'}}
                             />
                         </Grid>
-                        <Grid item xs={10} md={8}>
+                        <Grid item xs={8} md={8}>
                             <Grid container spacing={1}>
                                 <Grid item xs={12}>
                                     <Typography variant="h2">
                                         {league.league.name}
                                     </Typography>
                                 </Grid>
-                                <Grid item xs={1}>
+                                <Grid item xs={2} sm={1}>
                                     <img 
                                         src={league.country.flag}
                                         alt={league.country.name}
                                         style={{ maxWidth: '100%', height: 'auto'}}
                                     />
                                 </Grid>
-                                <Grid item xs={11}>
+                                <Grid item xs={10} sm={11}>
                                     <Typography variant="h6">
                                         {league.country.name}
                                     </Typography>
                                 </Grid>
                             </Grid>
                         </Grid>
-                        <Grid item xs={6} md={2}>
+                        <Grid item xs={12} md={2}>
                             <LocalizationProvider dateAdapter={AdapterDateFns}>
                                 <Stack spacing={3}>
                                     <DatePicker
