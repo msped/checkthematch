@@ -32,7 +32,7 @@ export default function MatchStats({ stats }) {
                   justifyContent="center"
                   alignItems="center"
                 >
-                  <Avatar alt={home.team.name} src={home.team.logo} />
+                  <Avatar alt={home.team.name} src={home.team.logo} sx={{ width: 45, height: 45 }} />
                 </Box>
               </TableCell>
               <TableCell align="center">
@@ -46,7 +46,7 @@ export default function MatchStats({ stats }) {
                   justifyContent="center"
                   alignItems="center"
                 >
-                  <Avatar alt={away.team.name} src={away.team.logo} />
+                  <Avatar alt={away.team.name} src={away.team.logo} sx={{ width: 45, height: 45 }} />
                 </Box>
               </TableCell>
             </TableRow>
