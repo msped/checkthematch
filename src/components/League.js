@@ -59,7 +59,7 @@ export default function League() {
                         <Grid item xs={8} md={8}>
                             <Grid container spacing={1}>
                                 <Grid item xs={12}>
-                                    <Typography variant="h2">
+                                    <Typography variant="h2" sx={{ fontWeight: '400' }}>
                                         {league.league.name}
                                     </Typography>
                                 </Grid>
