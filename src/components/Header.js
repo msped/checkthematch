@@ -1,14 +1,24 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
-import Grid from '@mui/material/Grid';
+import { 
+  Drawer,
+  AppBar,
+  Box,
+  Toolbar,
+  Typography,
+  TextField,
+  Autocomplete,
+  Grid,
+  IconButton,
+  Button,
+  DialogTitle,
+} from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import CancelIcon from '@mui/icons-material/Cancel';
 import { createTheme } from '@mui/material/styles'
 import { useNavigate } from 'react-router-dom'
+
+import LoadingSkeleton from '../components/LoadingSkeleton'
 
 const theme = createTheme({
   palette: {
@@ -22,6 +32,7 @@ const theme = createTheme({
 export default function Header() {
   const [term, setTerm] = useState('')
   const [results, setResults] = useState([])
+  const [navDrawer, setNav] = useState(false);
 
   const nav = useNavigate()
   
@@ -35,8 +46,7 @@ export default function Header() {
           }
         })
         if (data.response.length > 0 && term !== '') {
-          let newResponse = data.response.slice(0, 5)
-          setResults(newResponse.slice(0, 5))
+          setResults(data.response)
         }
     }
     
@@ -62,19 +72,86 @@ export default function Header() {
     }
   }
 
+  const toggleDrawer = (event, open) => {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+    setNav(open);
+  };
+
   return (
     <div>
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static" theme={theme}>
             <Toolbar>
               <Typography
-                  variant="h6"
-                  noWrap
-                  component="div"
-                  sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+                variant="h6"
+                noWrap
+                component="div"
+                sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}
               >
-                  Should I watch it?
+                Should I watch it?
               </Typography>
+              
+              {/* Phone nav view */}
+              <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                <IconButton
+                  size="large"
+                  aria-label="Navigation menu"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  onClick={(e) => {toggleDrawer(e, true)}}
+                  color="inherit"
+                >
+                  <MenuIcon />
+                </IconButton>
+                <Drawer
+                  id="menu-appbar"
+                  anchor='top'
+                  open={navDrawer}
+                  onClose={(e) => {toggleDrawer(e, false)}}
+                  sx={{
+                    display: { xs: 'block', md: 'none' },
+                  }}
+                >
+                  <DialogTitle textAlign="right">
+                    <IconButton
+                      onClick={(e) => {toggleDrawer(e, false)}}
+                    >
+                      <CancelIcon />
+                    </IconButton>
+                  </DialogTitle>
+                  
+                  <Button
+                    href="/"
+                    sx={{ my: 2, color: 'white', display: 'block', width: "100%", textAlign: "center" }}
+                  >
+                    <Typography variant="h6">Home</Typography>
+                  </Button>
+                  <Button
+                    // href="/"
+                    sx={{ my: 2, color: 'white', display: 'block', width: "100%", textAlign: "center"  }}
+                  >
+                    <Typography variant="h6">Contact</Typography>
+                  </Button>
+                </Drawer>
+              </Box>
+
+              {/* Normal nav view */}
+              <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                <Button
+                  href="/"
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                >
+                  <Typography variant="h6">Home</Typography>
+                </Button>
+                <Button
+                  //href="/"
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                >
+                  <Typography variant="h6">Contact</Typography>
+                </Button>
+              </Box>
 
               <Autocomplete
                 options={results}
@@ -82,6 +159,9 @@ export default function Header() {
                 clearOnBlur={true}
                 blurOnSelect={true}
                 freeSolo
+                size="small"
+                loading={true}
+                loadingText={<LoadingSkeleton />}
                 disableClearable={true}
                 open={term ? true : false}
                 renderOption={(props, option) => (
@@ -95,7 +175,7 @@ export default function Header() {
                         />
                       </Grid>
                       <Grid item xs={10}>
-                        <div>{option.league.name}</div>
+                        <Typography>{option.league.name}</Typography>
                       </Grid>
                     </Grid>
                   </li>
