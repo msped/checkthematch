@@ -12,7 +12,6 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import Stack from '@mui/material/Stack';
 
 import StatisticsSkeleton from '../components/StatisticsSkeleton'
 import MatchPlayers from '../components/MatchPlayers';
