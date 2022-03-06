@@ -17,10 +17,15 @@ export default function TopLeaguesGrid() {
 
         return (
             <Grid key={item.id} item xs={12} sm={6} md={4}>
-                <Card
-                    sx={{ minHeight: '130px' }}
-                >
-                    <CardActionArea sx={{ minHeight: '130px' }} href={path}>
+                <Card>
+                    <CardActionArea 
+                        sx={{ minHeight: {
+                            xs: '110px',
+                            sm: '130px',
+                            md: '135px',
+                        } }}
+                        href={path}
+                    >
                         <CardContent>
                             <Grid container spacing={1}>
                                 <Grid item xs={3}>
