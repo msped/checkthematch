@@ -48,7 +48,7 @@ export default function League() {
         return (
             <Card>
                 <CardContent>
-                    <Grid container spacing={1}>
+                    <Grid container spacing={2}>
                         <Grid item xs={4} md={2}>
                             <img 
                                 src={league.league.logo}
