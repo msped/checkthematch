@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { 
-  Drawer,
   AppBar,
   Box,
   Toolbar,
@@ -9,13 +8,8 @@ import {
   TextField,
   Autocomplete,
   Grid,
-  IconButton,
-  Button,
-  DialogTitle,
   Link,
 } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
-import CancelIcon from '@mui/icons-material/Cancel';
 import { createTheme } from '@mui/material/styles'
 import { useNavigate } from 'react-router-dom'
 
@@ -33,7 +27,7 @@ const theme = createTheme({
 export default function Header() {
   const [term, setTerm] = useState('')
   const [results, setResults] = useState([])
-  const [navDrawer, setNav] = useState(false);
+  // const [navDrawer, setNav] = useState(false);
 
   const nav = useNavigate()
   
@@ -73,12 +67,12 @@ export default function Header() {
     }
   }
 
-  const toggleDrawer = (event, open) => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-      return;
-    }
-    setNav(open);
-  };
+  // const toggleDrawer = (event, open) => {
+  //   if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+  //     return;
+  //   }
+  //   setNav(open);
+  // };
 
   return (
     <div>
@@ -92,7 +86,7 @@ export default function Header() {
                 to='/'
                 sx={{ 
                   flexGrow: 1, 
-                  display: { xs: 'none', md: 'flex' },
+                  display: { xs: 'none', sm: 'flex' },
                   color: '#fff',
                   cursor: 'pointer',
                   textDecoration: 'none',
@@ -101,7 +95,7 @@ export default function Header() {
                 Check the match
               </Typography>
               
-              {/* Phone nav view */}
+              {/* Phone nav view - Removed as no link being shown, just a landing page
               <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                 <IconButton
                   size="large"
@@ -130,23 +124,7 @@ export default function Header() {
                     </IconButton>
                   </DialogTitle>
                 </Drawer>
-              </Box>
-
-              {/* Normal nav view */}
-              <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                <Button
-                  href="/"
-                  sx={{ my: 2, color: 'white', display: 'block' }}
-                >
-                  <Typography variant="h6">Home</Typography>
-                </Button>
-                <Button
-                  //href="/"
-                  sx={{ my: 2, color: 'white', display: 'block' }}
-                >
-                  <Typography variant="h6">Contact</Typography>
-                </Button>
-              </Box>
+              </Box> */}
 
               <Autocomplete
                 options={results}
