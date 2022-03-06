@@ -12,6 +12,7 @@ import {
   IconButton,
   Button,
   DialogTitle,
+  Link,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CancelIcon from '@mui/icons-material/Cancel';
@@ -87,10 +88,17 @@ export default function Header() {
               <Typography
                 variant="h6"
                 noWrap
-                component="div"
-                sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}
+                component={Link}
+                to='/'
+                sx={{ 
+                  flexGrow: 1, 
+                  display: { xs: 'none', md: 'flex' },
+                  color: '#fff',
+                  cursor: 'pointer',
+                  textDecoration: 'none',
+                }}
               >
-                Should I watch it?
+                Check the match
               </Typography>
               
               {/* Phone nav view */}
@@ -121,19 +129,6 @@ export default function Header() {
                       <CancelIcon />
                     </IconButton>
                   </DialogTitle>
-                  
-                  <Button
-                    href="/"
-                    sx={{ my: 2, color: 'white', display: 'block', width: "100%", textAlign: "center" }}
-                  >
-                    <Typography variant="h6">Home</Typography>
-                  </Button>
-                  <Button
-                    // href="/"
-                    sx={{ my: 2, color: 'white', display: 'block', width: "100%", textAlign: "center"  }}
-                  >
-                    <Typography variant="h6">Contact</Typography>
-                  </Button>
                 </Drawer>
               </Box>
 
