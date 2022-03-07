@@ -90,9 +90,10 @@ export default function Header() {
                   color: '#fff',
                   cursor: 'pointer',
                   textDecoration: 'none',
+                  fontFamily: 'Patua One, cursive'
                 }}
               >
-                Check the match
+                CHECK THE MATCH
               </Typography>
               
               {/* Phone nav view - Removed as no link being shown, just a landing page
