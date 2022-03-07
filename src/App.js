@@ -30,12 +30,10 @@ function App() {
         <CssBaseline />
         <Header />
         <Box mt={3}>
-          <Container maxWidth="md">
             <Routes>
               <Route exact path="/" element={<Home/>}/>
-              <Route exact path="/league/:league_id" element={<League/>}/>
+              <Route exact path="/league/:league_id" element={<Container maxWidth="md"><League/></Container>}/>
             </Routes>
-          </Container>
         </Box>
         <Footer />
       </ThemeProvider>
