@@ -1,5 +1,4 @@
 import Container from '@mui/material/Container'
-import Box from '@mui/material/Box'
 import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
 import {
@@ -29,12 +28,10 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Header />
-        <Box mt={3}>
-            <Routes>
-              <Route exact path="/" element={<Home/>}/>
-              <Route exact path="/league/:league_id" element={<Container maxWidth="md"><League/></Container>}/>
-            </Routes>
-        </Box>
+          <Routes>
+            <Route exact path="/" element={<Home/>}/>
+            <Route exact path="/league/:league_id" element={<Container maxWidth="md" sx={{mt:3}}><League/></Container>}/>
+          </Routes>
         <Footer />
       </ThemeProvider>
     </div>
