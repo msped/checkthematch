@@ -82,18 +82,20 @@ export default function Header() {
               <Typography
                 variant="h6"
                 noWrap
-                component={Link}
-                to='/'
                 sx={{ 
                   flexGrow: 1, 
                   display: { xs: 'none', sm: 'flex' },
-                  color: '#fff',
-                  cursor: 'pointer',
-                  textDecoration: 'none',
+                  
                   fontFamily: 'Patua One, cursive'
                 }}
               >
-                CHECK THE MATCH
+                <Link href='/' underline='none' 
+                  sx={{
+                    color: '#fff', cursor: 'pointer',
+                  }}
+                >
+                  CHECK THE MATCH
+                </Link>
               </Typography>
               
               {/* Phone nav view - Removed as no link being shown, just a landing page
