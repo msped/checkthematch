@@ -1,4 +1,3 @@
-import Container from '@mui/material/Container'
 import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
 import {
@@ -10,6 +9,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import Home from './components/Home'
 import League from './components/League'
+import Contact from './components/Contact'
 
 let theme = createTheme({
   palette: {
@@ -30,7 +30,8 @@ function App() {
         <Header />
           <Routes>
             <Route exact path="/" element={<Home/>}/>
-            <Route exact path="/league/:league_id" element={<Container maxWidth="md" sx={{mt:3}}><League/></Container>}/>
+            <Route exact path="/league/:league_id" element={<League/>}/>
+            <Route exact path="/contact" element={<Contact />}/>
           </Routes>
         <Footer />
       </ThemeProvider>

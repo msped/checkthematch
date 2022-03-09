@@ -5,6 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
 import { useParams } from 'react-router-dom'
 
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
@@ -102,23 +103,24 @@ export default function League() {
     }
     
     return (
-        <Grid container spacing={1}>
-            <Grid item xs={12}>
-                { loading ? <LeagueSkeleton /> : leagueInfo()}
+        <Container maxWidth="md" sx={{ marginTop: 3}}>
+            <Grid container spacing={1}>
+                <Grid item xs={12}>
+                    { loading ? <LeagueSkeleton /> : leagueInfo()}
+                </Grid>
+                <Grid item xs={12}>
+                    { loading ? 
+                        <Stack spacing={2}>
+                            <FixturesSkeleton />
+                            <FixturesSkeleton />
+                            <FixturesSkeleton />
+                            <FixturesSkeleton />
+                        </Stack>
+                        : 
+                        <Fixtures leagueID={league_id} season={season}/>
+                    }
+                </Grid>
             </Grid>
-            <Grid item xs={12}>
-                { loading ? 
-                    <Stack spacing={2}>
-                        <FixturesSkeleton />
-                        <FixturesSkeleton />
-                        <FixturesSkeleton />
-                        <FixturesSkeleton />
-                    </Stack>
-                    
-                    : 
-                    <Fixtures leagueID={league_id} season={season}/>
-                }
-            </Grid>
-        </Grid>
+        </Container>
     )
 }
