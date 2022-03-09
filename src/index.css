@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Patua+One&display=swap');
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -24,3 +26,35 @@ code {
   width: 100%;
   height: auto;
 }
+
+.image-container {
+  background-image: linear-gradient(0deg, #00000034 30%, #ffffff44 100%), url('../src/images/home_banner.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  min-height: 60vh;
+}
+
+.image-text {
+  position: absolute;
+  top: 30%;
+  left: 7.5%;
+}
+
+.image-text p {
+  font-weight: 500;
+  font-style: italic;
+  background-color: #000;
+  width: fit-content;
+  padding: 5px 15px;
+  font-family: 'Patua One', cursive;
+}
+
+@media (max-width: 575.98px) {
+  .image-text {
+    left: 0;
+    padding: 10px
+  }
+}
+
+/* #5061BC */
