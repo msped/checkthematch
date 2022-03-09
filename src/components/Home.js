@@ -1,7 +1,8 @@
 import React from 'react'
 import { Grid, Typography, Container } from '@mui/material'
 
-import TopLeaguesGrid from './TopLeaguesGrid'
+import TopLeaguesGrid from '../components/TopLeaguesGrid'
+
 export default function Home() {
 
     return (
