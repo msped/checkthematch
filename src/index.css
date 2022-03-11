@@ -11,25 +11,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-.d-block {
-  display: block;
-}
-
-.align-center {
-  text-align: center;
-}
-
-.img-fluid {
-  width: 100%;
-  height: auto;
-}
-
-@media (max-width: 575.98px) {
-  .image-text {
-    left: 0;
-    padding: 10px
-  }
-}
-
-/* #5061BC */

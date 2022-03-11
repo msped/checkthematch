@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Typography, Container } from '@mui/material'
+import { Grid, Typography, Container, Box } from '@mui/material'
 
 import TopLeaguesGrid from '../components/TopLeaguesGrid'
 import home_banner from '../images/home_banner.jpg'
@@ -18,11 +18,12 @@ export default function Home() {
                     minHeight: '60vh'
                 }}
             >
-                <div 
-                    style={{
+                <Box 
+                    sx={{
                         position: 'absolute',
                         top: '30%',
-                        left: '7.5%'
+                        left: {xs: '0', sm: '7.5%'},
+                        padding: {xs: '10px', md: '0'}
                     }}
                 >
                     <Typography
@@ -51,7 +52,7 @@ export default function Home() {
                     >
                         See the stats before spending the time watching a potential boring game.
                     </Typography>
-                </div>
+                </Box>
             </div>
         </Grid>
         <Grid item xs={12}>

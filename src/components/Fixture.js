@@ -97,7 +97,8 @@ function Fixture({fixture}) {
                         <img 
                             src={fixture.teams.home.logo} 
                             alt={fixture.teams.home.name}
-                            className="img-fluid p-3"
+                            width='100%'
+                            height='auto'
                         />
                     </Grid>
                     
@@ -132,7 +133,8 @@ function Fixture({fixture}) {
                         <img
                             src={fixture.teams.away.logo} 
                             alt={fixture.teams.away.name}
-                            className="img-fluid p-3"
+                            width='100%'
+                            height='auto'
                         />
                     </Grid>
                 </Grid>
