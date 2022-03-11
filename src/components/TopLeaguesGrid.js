@@ -32,7 +32,8 @@ export default function TopLeaguesGrid() {
                                     <img 
                                         src={item.league.logo} 
                                         alt={item.league.name}
-                                        className="img-fluid p-3"
+                                        width="100%"
+                                        height="auto"
                                     />
                                 </Grid>
                                 <Grid container item xs={9} spacing={1}>
@@ -45,7 +46,8 @@ export default function TopLeaguesGrid() {
                                         <img 
                                             src={item.country.logo} 
                                             alt={item.country.name}
-                                            className="img-fluid p-3"
+                                            width="100%"
+                                            height="auto"
                                         />
                                     </Grid>
                                     <Grid item xs={10}>
