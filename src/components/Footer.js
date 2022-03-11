@@ -60,21 +60,21 @@ export default function Footer() {
                 ))}
               </Stack>
             </Grid>
-            {/* Legal */}
+            {/* Legal
             <Grid item xs={12} md={4}>
               <Stack direction="column" spacing={1}>
                 <Typography variant='h6' color="text.secondary">
                   Legal
-                </Typography>
-                {/* Terms & Conditions */}
+                </Typography> */}
+                {/* Terms & Conditions 
                 <Typography
                   variant='body1'
                   color="text.secondary"
                   component={Link}
                   underline='hover'
                   href="/terms-conditions"
-                >Terms and Conditions</Typography>
-                {/* Privacy Policy */}
+                >Terms and Conditions</Typography>*/}
+                {/* Privacy Policy
                 <Typography
                   variant='body1'
                   color="text.secondary"
@@ -83,7 +83,7 @@ export default function Footer() {
                   href="/privacy-policy"
                 >Privacy Policy</Typography>
               </Stack>
-            </Grid>
+            </Grid> */}
             {/* Contact */}
             <Grid item xs={12} md={4}>
               <Stack direction="column" spacing={1}>
