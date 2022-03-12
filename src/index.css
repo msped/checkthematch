@@ -11,3 +11,35 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.background-image {
+  background-image: url('images/home_xs-min.jpg');
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+  .background-image {
+    background-image: url('images/home_sm-min.jpg');
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .background-image {
+    background-image: url('images/home_md-min.jpg');
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .background-image {
+    background-image: url('images/home_lg-min.jpg');
+  }
+}
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .background-image {
+    background-image: url('images/home_xl-min.jpg');
+  }
+}

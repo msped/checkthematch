@@ -2,16 +2,15 @@ import React from 'react'
 import { Grid, Typography, Container, Box } from '@mui/material'
 
 import TopLeaguesGrid from '../components/TopLeaguesGrid'
-import home_banner from '../images/home_banner.jpg'
 
 export default function Home() {
 
     return (
     <Grid container spacing={1}>
         <Grid item xs={12}>
-            <div 
+            <div
+                className='background-image'
                 style={{
-                    backgroundImage: `url(${home_banner})`,
                     backgroundSize: 'cover',
                     backgroundRepeat: 'no-repeat',
                     backgroundPosition: 'bottom',
