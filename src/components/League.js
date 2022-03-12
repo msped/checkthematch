@@ -54,7 +54,12 @@ export default function League() {
                             <img 
                                 src={league.league.logo}
                                 alt={league.league.name}
-                                style={{ maxWidth: '100%', height: 'auto'}}
+                                width='150'
+                                height='150'
+                                style={{
+                                    width: '100%',
+                                    height: "auto"
+                                }}
                             />
                         </Grid>
                         <Grid item xs={8} md={8}>
@@ -68,7 +73,12 @@ export default function League() {
                                     <img 
                                         src={league.country.flag}
                                         alt={league.country.name}
-                                        style={{ maxWidth: '100%', height: 'auto'}}
+                                        width='150'
+                                        height='150'
+                                        style={{
+                                            width: '100%',
+                                            height: "auto"
+                                        }}
                                     />
                                 </Grid>
                                 <Grid item xs={10} sm={11}>
