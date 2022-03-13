@@ -4,6 +4,8 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Grid';
 
+import LazyLoad from 'react-lazyload';
+
 import Statistics from '../components/Statistics';
 
 import { format } from 'date-fns'
@@ -51,16 +53,18 @@ function Fixture({fixture}) {
 
                 <Grid container spacing={1} sx={{ marginTop: 1, padding: 1 }}>
                     <Grid item xs={3} md={2} sx={{ textAlign: 'center'}}>
-                        <img 
-                            src={fixture.teams.home.logo} 
-                            alt={fixture.teams.home.name}
-                            width='150'
-                            height='150'
-                            style={{
-                                width: '100%',
-                                height: "auto"
-                            }}
-                        />
+                        <LazyLoad height={150}>
+                            <img 
+                                src={fixture.teams.home.logo} 
+                                alt={fixture.teams.home.name}
+                                width='150'
+                                height='150'
+                                style={{
+                                    width: '100%',
+                                    height: "auto"
+                                }}
+                            />
+                        </LazyLoad>
                     </Grid>
                     
                     <Grid item xs={6} md={8} sx={{ textAlign: 'center'}}>
@@ -103,16 +107,18 @@ function Fixture({fixture}) {
                         </CardContent>
                     </Grid>
                     <Grid item xs={3} md={2} sx={{ textAlign: 'center'}}>
-                        <img
-                            src={fixture.teams.away.logo} 
-                            alt={fixture.teams.away.name}
-                            width='150'
-                            height='150'
-                            style={{
-                                width: '100%',
-                                height: "auto"
-                            }}
-                        />
+                        <LazyLoad height={150}>
+                            <img
+                                src={fixture.teams.away.logo} 
+                                alt={fixture.teams.away.name}
+                                width='150'
+                                height='150'
+                                style={{
+                                    width: '100%',
+                                    height: "auto"
+                                }}
+                            />
+                        </LazyLoad>
                     </Grid>
                 </Grid>
             </Card>
