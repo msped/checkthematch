@@ -9,6 +9,8 @@ import {
 } from '@mui/material'
 import topLeagues from '../topLeagues'
 
+import LazyLoad from 'react-lazyload';
+
 export default function TopLeaguesGrid() {
 
     const card = (item) => {
@@ -29,12 +31,18 @@ export default function TopLeaguesGrid() {
                         <CardContent>
                             <Grid container spacing={1}>
                                 <Grid item xs={3}>
-                                    <img 
-                                        src={item.league.logo} 
-                                        alt={item.league.name}
-                                        width="100%"
-                                        height="auto"
-                                    />
+                                    <LazyLoad height={200}>
+                                        <img 
+                                            src={item.league.logo} 
+                                            alt={item.league.name}
+                                            width="150"
+                                            height="250"
+                                            style={{
+                                                width: '100%',
+                                                height: "auto"
+                                            }}
+                                        />
+                                    </LazyLoad>
                                 </Grid>
                                 <Grid container item xs={9} spacing={1}>
                                     <Grid item xs={12}>
@@ -43,12 +51,18 @@ export default function TopLeaguesGrid() {
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={2}>
-                                        <img 
-                                            src={item.country.logo} 
-                                            alt={item.country.name}
-                                            width="100%"
-                                            height="auto"
-                                        />
+                                        <LazyLoad height={100}>
+                                            <img 
+                                                src={item.country.logo} 
+                                                alt={item.country.name}
+                                                width="150"
+                                                height="125"
+                                                style={{
+                                                    width: '100%',
+                                                    height: "auto"
+                                                }}
+                                            />
+                                        </LazyLoad>
                                     </Grid>
                                     <Grid item xs={10}>
                                         <Typography variant='subtitle1'>
