@@ -16,29 +16,29 @@ code {
   background-image: url('images/home_xs-min.jpg');
 }
 
-/* Small devices (landscape phones, 576px and up) */
-@media (min-width: 576px) {
+/* Small devices (landscape phones, 600px and up) */
+@media (min-width: 600px) {
   .background-image {
     background-image: url('images/home_sm-min.jpg');
   }
 }
 
-/* Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) {
+/* Medium devices (tablets, 900px and up) */
+@media (min-width: 900px) {
   .background-image {
     background-image: url('images/home_md-min.jpg');
   }
 }
 
-/* Large devices (desktops, 992px and up) */
-@media (min-width: 992px) {
+/* Large devices (desktops, 1200px and up) */
+@media (min-width: 1200px) {
   .background-image {
     background-image: url('images/home_lg-min.jpg');
   }
 }
 
-/* X-Large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {
+/* X-Large devices (large desktops, 1536px and up) */
+@media (min-width: 1536px) {
   .background-image {
     background-image: url('images/home_xl-min.jpg');
   }
