@@ -1,15 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import Grid from '@mui/material/Grid';
-import Button from '@mui/material/Button'
-import Fixture from '../components/Fixture'
-import Stack from '@mui/material/Stack';
+import {
+    Typography,
+    Grid,
+    Stack,
+    CircularProgress 
+} from '@mui/material';
+
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 import FixturesSkeleton from '../components/FixturesSkeleton'
+import Fixture from '../components/Fixture'
 
 export default function Fixtures({leagueID, season}) {
     const [fixtures, setFixtures] = useState([])
     const [lastAmount, setLastAmount] = useState(10)
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         const search = async () => {
@@ -21,50 +27,65 @@ export default function Fixtures({leagueID, season}) {
               }
             })
             setFixtures(data.response)
+            setIsLoading(false)
         }
         search()
     }, [leagueID, season, lastAmount])
 
     useEffect(() => {
         setLastAmount(10)
-    }, [leagueID])
+    }, [leagueID, season])
 
-    const showMore = () => {
+    const fetchData = () => {
         let newAmount = lastAmount + 10;
         setLastAmount(newAmount)
     };
 
     return (
-        fixtures.length > 0 ? 
-            (
-                <Grid container spacing={2} alignItems="center" justifyContent="center">
-                    {fixtures.map((fixture) => (
-                    <Grid item key={fixture.fixture.id} xs={12}>
-                        <Fixture key={fixture.id} fixture={fixture} />
-                    </Grid>
-                    ))}
-                    <Grid item xs={12}>
-                        <Stack alignItems='center'>
-                            <Button
-                                size='large'
-                                onClick={showMore}
-                                color='primary'
-                                variant='contained'
-                            >
-                                Show More
-                            </Button>
+        <>
+            {fixtures.length > 0 && !isLoading && (
+                <InfiniteScroll
+                    dataLength={fixtures.length}
+                    next={fetchData}
+                    hasMore={true}
+                    loader={
+                        <Stack alignItems="center">
+                            <CircularProgress color="secondary" />
                         </Stack>
+                    }
+                    endMessage={
+                        <Typography style={{textAlign: 'center'}}>
+                            No more fixtures in this season.
+                        </Typography>
+                    }
+                    style={{ overflow: 'unset'}}
+                >
+                    <Grid container spacing={2} alignItems="center" justifyContent="center">
+                        {fixtures.map((fixture) => (
+                        <Grid item key={fixture.fixture.id} xs={12}>
+                            <Fixture key={fixture.id} fixture={fixture} />
+                        </Grid>
+                        ))}
                     </Grid>
-                </Grid>
-            )
-            :
-            (
-                <Stack direction="column" spacing={1}>
-                    <FixturesSkeleton />
-                    <FixturesSkeleton />
-                    <FixturesSkeleton />
-                    <FixturesSkeleton />
-                </Stack>
-            )
+                </InfiniteScroll> 
+            )}
+
+            {isLoading && (
+                <FixturesSkeleton />
+            )}
+
+            {!isLoading && fixtures.length === 0 && (
+                <Typography
+                    variant='h5'
+                    sx={{
+                        textAlign: 'center',
+                        minHeight: '30vh',
+                        padding: 5
+                    }}
+                >
+                    There is no fixtures for this season.
+                </Typography>
+            )}
+        </>
     )
 }
