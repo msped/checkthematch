@@ -15,7 +15,6 @@ import Stack from '@mui/material/Stack';
 
 import Fixtures from '../components/Fixtures'
 import LeagueSkeleton from '../components/LeagueSkeleton'
-import FixturesSkeleton from '../components/FixturesSkeleton'
 
 export default function League() {
     const currentYear = new Date().getFullYear()
@@ -119,16 +118,7 @@ export default function League() {
                     { loading ? <LeagueSkeleton /> : leagueInfo()}
                 </Grid>
                 <Grid item xs={12}>
-                    { loading ? 
-                        <Stack spacing={2}>
-                            <FixturesSkeleton />
-                            <FixturesSkeleton />
-                            <FixturesSkeleton />
-                            <FixturesSkeleton />
-                        </Stack>
-                        : 
-                        <Fixtures leagueID={league_id} season={season}/>
-                    }
+                    <Fixtures leagueID={league_id} season={season}/>
                 </Grid>
             </Grid>
         </Container>
