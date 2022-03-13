@@ -5,6 +5,8 @@ import Button from '@mui/material/Button'
 import Fixture from '../components/Fixture'
 import Stack from '@mui/material/Stack';
 
+import FixturesSkeleton from '../components/FixturesSkeleton'
+
 export default function Fixtures({leagueID, season}) {
     const [fixtures, setFixtures] = useState([])
     const [lastAmount, setLastAmount] = useState(10)
@@ -33,24 +35,36 @@ export default function Fixtures({leagueID, season}) {
     };
 
     return (
-        <Grid container spacing={2} alignItems="center" justifyContent="center">
-            {fixtures.map((fixture) => (
-            <Grid item key={fixture.fixture.id} xs={12}>
-                <Fixture key={fixture.id} fixture={fixture} />
-            </Grid>
-            ))}
-            <Grid item xs={12}>
-                <Stack alignItems='center'>
-                    <Button
-                        size='large'
-                        onClick={showMore}
-                        color='primary'
-                        variant='contained'
-                    >
-                        Show More
-                    </Button>
+        fixtures.length > 0 ? 
+            (
+                <Grid container spacing={2} alignItems="center" justifyContent="center">
+                    {fixtures.map((fixture) => (
+                    <Grid item key={fixture.fixture.id} xs={12}>
+                        <Fixture key={fixture.id} fixture={fixture} />
+                    </Grid>
+                    ))}
+                    <Grid item xs={12}>
+                        <Stack alignItems='center'>
+                            <Button
+                                size='large'
+                                onClick={showMore}
+                                color='primary'
+                                variant='contained'
+                            >
+                                Show More
+                            </Button>
+                        </Stack>
+                    </Grid>
+                </Grid>
+            )
+            :
+            (
+                <Stack direction="column" spacing={1}>
+                    <FixturesSkeleton />
+                    <FixturesSkeleton />
+                    <FixturesSkeleton />
+                    <FixturesSkeleton />
                 </Stack>
-            </Grid>
-        </Grid>
+            )
     )
 }

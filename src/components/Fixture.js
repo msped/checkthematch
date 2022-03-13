@@ -1,123 +1,101 @@
 import React from 'react'
-import { makeStyles, useTheme } from '@mui/styles';
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Grid';
 
+import LazyLoad from 'react-lazyload';
+
 import Statistics from '../components/Statistics';
 
 import { format } from 'date-fns'
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        flexGrow: 1
-    },
-    teamLogo: {
-        padding: theme.spacing(1)
-    },
-    textCenter: {
-        textAlign: 'center'
-    },
-    imgFluid: {
-        maxWidth: '100%',
-        height: 'auto',
-    },
-    team: {
-        textAlign: 'center',
-        fontSize: '1.25rem'
-    },
-    cardContent: {
-        padding: 0
-    },
-    fixtureHeading: {
-        backgroundColor: '#353535'
-
-    },
-    fixtureHeadingContent: {
-        textAlign: 'center',
-        marginTop: '5px'
-    },
-    content: {
-        marginTop: '10px'
-    },
-    statsButton: {
-        marginTop: '10px'
-    }
-}));
-
 
 function Fixture({fixture}) {
-
-    const classes = useStyles()
-    const theme = useTheme();
 
     const date = new Date(fixture.fixture.date)
 
     return (
-        <div className={classes.root}>
+        <div>
             <Card>
-                <Grid container spacing={1} className={classes.fixtureHeading} sx={{ paddingBottom: 1 }}>
-                    <Grid item xs={3} className={classes.fixtureHeadingContent}>
+                <Grid container spacing={1} sx={{ paddingBottom: 1, backgroundColor: '#353535' }}>
+                    <Grid item xs={3} sx={{ textAlign: 'center', marginTop: 1 }}>
                         <Typography variant="subtitle1" color="textSecondary">
                             Home
                         </Typography>
                     </Grid>
-                    
-                    <Grid item xs={6} className={classes.fixtureHeadingContent}>
+                    <Grid item xs={6} sx={{ textAlign: 'center', marginTop: 1 }}>
                         <Typography variant="subtitle1">
                             {format(date, "dd/MM/yyyy")}
                         </Typography>
                     </Grid>
-    
-                    <Grid item xs={3} className={classes.fixtureHeadingContent}>
+                    <Grid item xs={3} sx={{ textAlign: 'center', marginTop: 1 }}>
                         <Typography variant="subtitle1" color="textSecondary">
                             Away
                         </Typography>
                     </Grid>
                     <Grid item xs={5}>
-                        <Typography className={classes.textCenter}>
+                        <Typography sx={{ textAlign: 'center'}}>
                             {fixture.teams.home.name}
                         </Typography>
                     </Grid>
                     <Grid item xs={2}>
-                        <Typography className={classes.textCenter}>
+                        <Typography sx={{ textAlign: 'center'}}>
                              v
                         </Typography>
                     </Grid>
                     <Grid item xs={5}>
-                        <Typography className={classes.textCenter}>
+                        <Typography sx={{ textAlign: 'center'}}>
                             {fixture.teams.away.name}
                         </Typography>
                     </Grid>
                 </Grid>
 
-                <Grid container spacing={1} className={classes.content}>
-                    <Grid item xs={3} className={classes.textCenter}>
-                        <img 
-                            src={fixture.teams.home.logo} 
-                            alt={fixture.teams.home.name}
-                            className="img-fluid p-3"
-                        />
+                <Grid container spacing={1} sx={{ marginTop: 1, padding: 1 }}>
+                    <Grid item xs={3} md={2} sx={{ textAlign: 'center'}}>
+                        <LazyLoad height={150}>
+                            <img 
+                                src={fixture.teams.home.logo} 
+                                alt={fixture.teams.home.name}
+                                width='150'
+                                height='150'
+                                style={{
+                                    width: '100%',
+                                    height: "auto"
+                                }}
+                            />
+                        </LazyLoad>
                     </Grid>
                     
-                    <Grid item xs={6} className={classes.textCenter}>
-                        <CardContent className={classes.cardContent}>
+                    <Grid item xs={6} md={8} sx={{ textAlign: 'center'}}>
+                        <CardContent>
                             <Grid container spacing={1}>
-                                <Grid item xs={12}>
-                                    {fixture.fixture.venue.name}, {fixture.fixture.venue.city}
+                                <Grid
+                                    item 
+                                    component={Grid}
+                                    xs={12}
+                                    sx={{
+                                        display: {
+                                            xs: 'none',
+                                            sm: 'block'
+                                        }
+                                    }}
+                                >
+                                    <Typography>
+                                        {fixture.fixture.venue.name}, {fixture.fixture.venue.city}
+                                    </Typography>
                                 </Grid>
-                                <Grid item xs={12} className={classes.textCenter}>
+                                <Grid item xs={12} sx={{ textAlign: 'center'}}>
                                 {(fixture.score.fulltime.home + fixture.score.fulltime.away === 0)
                                     ?
                                     <Typography variant="body1">This ended with no goals after Full Time, probably shouldn't watch this match.</Typography>
                                     :
                                     <Grid container spacing={1}>
                                         <Grid item xs={6}>
-                                            <Typography>Half Time: {fixture.score.halftime.home + fixture.score.halftime.away}</Typography>
+                                            <Typography>HT Goals: {fixture.score.halftime.home + fixture.score.halftime.away}</Typography>
                                         </Grid>
                                         <Grid item xs={6}>
-                                            <Typography>Full Time: {fixture.score.fulltime.home + fixture.score.fulltime.away}</Typography>
+                                            <Typography>FT Goals: {fixture.score.fulltime.home + fixture.score.fulltime.away}</Typography>
                                         </Grid>
                                     </Grid>
                                 }
@@ -128,12 +106,19 @@ function Fixture({fixture}) {
                             </Grid>
                         </CardContent>
                     </Grid>
-                    <Grid item xs={3} className={classes.textCenter}>
-                        <img
-                            src={fixture.teams.away.logo} 
-                            alt={fixture.teams.away.name}
-                            className="img-fluid p-3"
-                        />
+                    <Grid item xs={3} md={2} sx={{ textAlign: 'center'}}>
+                        <LazyLoad height={150}>
+                            <img
+                                src={fixture.teams.away.logo} 
+                                alt={fixture.teams.away.name}
+                                width='150'
+                                height='150'
+                                style={{
+                                    width: '100%',
+                                    height: "auto"
+                                }}
+                            />
+                        </LazyLoad>
                     </Grid>
                 </Grid>
             </Card>
