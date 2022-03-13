@@ -6,7 +6,7 @@ export default function LeagueSkeleton() {
         <Card>
             <CardContent>
                 <Grid container spacing={2}>
-                    <Grid item xs={2} md={2}>
+                    <Grid item xs={4} md={2}>
                         <Skeleton variant='rectangular' width="100%" height={125} />
                     </Grid>
                     <Grid item xs={10} md={8}>
