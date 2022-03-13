@@ -3,6 +3,7 @@ import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
 
 import Statistics from '../components/Statistics';
 
@@ -49,21 +50,37 @@ function Fixture({fixture}) {
                     </Grid>
                 </Grid>
 
-                <Grid container spacing={1} sx={{ marginTop: 1 }}>
-                    <Grid item xs={3} sx={{ textAlign: 'center'}}>
+                <Grid container spacing={1} sx={{ marginTop: 1, padding: 1 }}>
+                    <Grid item xs={3} md={2} sx={{ textAlign: 'center'}}>
                         <img 
                             src={fixture.teams.home.logo} 
                             alt={fixture.teams.home.name}
-                            width='80%'
-                            height='auto'
+                            width='150'
+                            height='150'
+                            style={{
+                                width: '100%',
+                                height: "auto"
+                            }}
                         />
                     </Grid>
                     
-                    <Grid item xs={6} sx={{ textAlign: 'center'}}>
+                    <Grid item xs={6} md={8} sx={{ textAlign: 'center'}}>
                         <CardContent>
                             <Grid container spacing={1}>
-                                <Grid item xs={12}>
-                                    {fixture.fixture.venue.name}, {fixture.fixture.venue.city}
+                                <Grid
+                                    item 
+                                    component={Grid}
+                                    xs={12}
+                                    sx={{
+                                        display: {
+                                            xs: 'none',
+                                            sm: 'block'
+                                        }
+                                    }}
+                                >
+                                    <Typography>
+                                        {fixture.fixture.venue.name}, {fixture.fixture.venue.city}
+                                    </Typography>
                                 </Grid>
                                 <Grid item xs={12} sx={{ textAlign: 'center'}}>
                                 {(fixture.score.fulltime.home + fixture.score.fulltime.away === 0)
@@ -72,10 +89,10 @@ function Fixture({fixture}) {
                                     :
                                     <Grid container spacing={1}>
                                         <Grid item xs={6}>
-                                            <Typography>Half Time: {fixture.score.halftime.home + fixture.score.halftime.away}</Typography>
+                                            <Typography>HT Goals: {fixture.score.halftime.home + fixture.score.halftime.away}</Typography>
                                         </Grid>
                                         <Grid item xs={6}>
-                                            <Typography>Full Time: {fixture.score.fulltime.home + fixture.score.fulltime.away}</Typography>
+                                            <Typography>FT Goals: {fixture.score.fulltime.home + fixture.score.fulltime.away}</Typography>
                                         </Grid>
                                     </Grid>
                                 }
@@ -86,12 +103,16 @@ function Fixture({fixture}) {
                             </Grid>
                         </CardContent>
                     </Grid>
-                    <Grid item xs={3} sx={{ textAlign: 'center'}}>
+                    <Grid item xs={3} md={2} sx={{ textAlign: 'center'}}>
                         <img
                             src={fixture.teams.away.logo} 
                             alt={fixture.teams.away.name}
-                            width='100%'
-                            height='auto'
+                            width='150'
+                            height='150'
+                            style={{
+                                width: '100%',
+                                height: "auto"
+                            }}
                         />
                     </Grid>
                 </Grid>
