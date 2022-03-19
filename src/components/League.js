@@ -18,8 +18,6 @@ import LeagueSkeleton from '../components/LeagueSkeleton'
 
 export default function League() {
     const currentYear = new Date().getFullYear()
-    const startYear = new Date('2010-01-01')
-    const endYear = new Date(`${currentYear}-01-01`)
     const [league, setLeague] = useState([])
     const [season, setSeason] = useState('2021')
     const [loading, setLoading] = useState(true)
@@ -98,8 +96,8 @@ export default function League() {
                                             let newYear = new Date(newSeason).getFullYear()
                                             setSeason(newYear.toString());
                                         }}
-                                        minDate={startYear}
-                                        maxDate={endYear}
+                                        minDate={new Date('2010-01-01')}
+                                        maxDate={new Date(`${currentYear}-01-01`)}
                                         renderInput={(params) => <TextField {...params} helperText={null} />}
                                     />
                                 </Stack>
@@ -118,7 +116,10 @@ export default function League() {
                     { loading ? <LeagueSkeleton /> : leagueInfo()}
                 </Grid>
                 <Grid item xs={12}>
-                    <Fixtures leagueID={league_id} season={season}/>
+                    <Fixtures
+                        leagueID={league_id}
+                        season={season}
+                    />
                 </Grid>
             </Grid>
         </Container>
