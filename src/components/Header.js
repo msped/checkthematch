@@ -141,7 +141,7 @@ export default function Header() {
                 disableClearable={true}
                 open={term ? true : false}
                 renderOption={(props, option) => (
-                  <li {...props}>
+                  <li {...props} key={option.league.id}>
                     <Grid container spacing={2}>
                       <Grid item xs={2}>
                         <img 
