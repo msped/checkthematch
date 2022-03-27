@@ -6,10 +6,10 @@ import LaLiga from './images/topTenLeagues/League/140-min.png'
 import MLS from './images/topTenLeagues/League/866-min.png'
 
 import England from './images/topTenLeagues/Country/39.svg'
-import Spain from './images/topTenLeagues/Country/61.svg'
+import France from './images/topTenLeagues/Country/61.svg'
 import Italy from './images/topTenLeagues/Country/71.svg'
 import Germany from './images/topTenLeagues/Country/78.svg'
-import France from './images/topTenLeagues/Country/140.svg'
+import Spain from './images/topTenLeagues/Country/140.svg'
 import USA from './images/topTenLeagues/Country/866.svg'
 
 const topLeagues = [
