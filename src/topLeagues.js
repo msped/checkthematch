@@ -1,6 +1,6 @@
 import Prem from './images/topTenLeagues/League/39-min.png'
 import Ligue1 from './images/topTenLeagues/League/61-min.png'
-import SerieA from './images/topTenLeagues/League/71-min.png'
+import SerieA from './images/topTenLeagues/League/135-min.png'
 import Bundesliga from './images/topTenLeagues/League/78-min.png'
 import LaLiga from './images/topTenLeagues/League/140-min.png'
 import MLS from './images/topTenLeagues/League/866-min.png'
@@ -47,7 +47,7 @@ const topLeagues = [
         }
     },
     {
-        "id": 71,
+        "id": 135,
         "league": {
             "name": "Serie A",
             "logo": SerieA
