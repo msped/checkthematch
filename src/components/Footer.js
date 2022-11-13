@@ -40,63 +40,36 @@ export default function Footer() {
           mt: 'auto'
         }}
       >
-        <Container maxWidth="lg">
-          <Grid container spacing={1} mb={5}>
+        <Container maxWidth="md">
+          <Grid 
+            container 
+            spacing={1} 
+            mb={5}
+            alignItems="center"
+            justifyContent="center"
+          >
             {/* Top Leagues */}
-            <Grid item xs={12} md={4}>
-              <Stack direction='column' spacing={1}>
-                <Typography variant='h6' color="text.secondary">
+            <Grid item xs={8}>
+              <Stack direction='column' spacing={2}>
+                <Typography variant='h6' color="text.secondary" sx={{ textAlign: 'center'}}>
                   Top Leagues
                 </Typography>
+                <Grid container spacing={6}>
                 {topLeagues.map((item) => (
-                  <Typography
-                    key={item.id}
-                    variant='body1'
-                    color="text.secondary"
-                    component={Link}
-                    underline='hover'
-                    href={`/league/${item.id}`}
-                  >{item.league.name}</Typography>
+                  <Grid item key={item.id} xs={12} md={4} mb={3} sx={{textAlign: 'center'}}>
+                    <Typography
+                      key={item.id}
+                      variant='body1'
+                      color="text.secondary"
+                      component={Link}
+                      underline='hover'
+                      href={`/league/${item.id}`}
+                    >
+                      {item.league.name}
+                    </Typography>
+                  </Grid>
                 ))}
-              </Stack>
-            </Grid>
-            {/* Legal
-            <Grid item xs={12} md={4}>
-              <Stack direction="column" spacing={1}>
-                <Typography variant='h6' color="text.secondary">
-                  Legal
-                </Typography> */}
-                {/* Terms & Conditions 
-                <Typography
-                  variant='body1'
-                  color="text.secondary"
-                  component={Link}
-                  underline='hover'
-                  href="/terms-conditions"
-                >Terms and Conditions</Typography>*/}
-                {/* Privacy Policy
-                <Typography
-                  variant='body1'
-                  color="text.secondary"
-                  component={Link}
-                  underline='hover'
-                  href="/privacy-policy"
-                >Privacy Policy</Typography>
-              </Stack>
-            </Grid> */}
-            {/* Contact */}
-            <Grid item xs={12} md={4}>
-              <Stack direction="column" spacing={1}>
-                <Typography variant='h6' color="text.secondary">
-                  Get in touch
-                </Typography>
-                <Typography
-                  variant='body1'
-                  color="text.secondary"
-                  component={Link}
-                  underline='hover'
-                  href="/contact"
-                >Contact</Typography>
+                </Grid>
               </Stack>
             </Grid>
           </Grid>
