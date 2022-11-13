@@ -31,9 +31,20 @@ The API in use for the football data is [API-Football](https://www.api-football.
 
 ## Deployment
 
+### Environment Variables
+
+For the application to run it will require two environment variables. 
+
+For the API I used API-Football through [RAPID API](https://rapidapi.com/api-sports/api/api-football/). You will need `REACT_APP_API_HOST` and `REACT_APP_API_KEY` in your `.env` file which will be provided from RADPI API.
+
+### Run Locally
+
 To run locally open your console and run `git clone https://github.com/msped/shouldiwatchit.git` then change into the folder path.
 
 To run the developement server, type `npm start` in your console and press enter. It will open a new browser window, or tab if you haven't got one open, where you will see the developemnt server on localhost port 3000.
+
+
+### Run a production build
 
 To run the production build of the application run the below code.
 
