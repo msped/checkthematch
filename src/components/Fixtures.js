@@ -9,7 +9,7 @@ import {
 
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-import FixturesSkeleton from '../components/FixturesSkeleton'
+import FixturesSkeleton from '../components/skeletons/FixturesSkeleton'
 import Fixture from '../components/Fixture'
 
 export default function Fixtures({leagueID, season}) {

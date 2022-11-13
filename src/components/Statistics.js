@@ -13,7 +13,7 @@ import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 
-import StatisticsSkeleton from '../components/StatisticsSkeleton'
+import StatisticsSkeleton from '../components/skeletons/StatisticsSkeleton'
 import MatchPlayers from '../components/MatchPlayers';
 import MatchStats from '../components/MatchStats';
 

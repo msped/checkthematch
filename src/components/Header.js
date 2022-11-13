@@ -13,7 +13,7 @@ import {
 import { createTheme } from '@mui/material/styles'
 import { useNavigate } from 'react-router-dom'
 
-import LoadingSkeleton from '../components/LoadingSkeleton'
+import LoadingSkeleton from '../components/skeletons/LoadingSkeleton'
 
 const theme = createTheme({
   palette: {

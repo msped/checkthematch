@@ -14,7 +14,7 @@ import DatePicker from '@mui/lab/DatePicker';
 import Stack from '@mui/material/Stack';
 
 import Fixtures from '../components/Fixtures'
-import LeagueSkeleton from '../components/LeagueSkeleton'
+import LeagueSkeleton from '../components/skeletons/LeagueSkeleton'
 
 export default function League() {
     const currentYear = new Date().getFullYear()
