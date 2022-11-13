@@ -27,7 +27,6 @@ const theme = createTheme({
 export default function Header() {
   const [term, setTerm] = useState('')
   const [results, setResults] = useState([])
-  // const [navDrawer, setNav] = useState(false);
 
   const nav = useNavigate()
   
@@ -67,13 +66,6 @@ export default function Header() {
     }
   }
 
-  // const toggleDrawer = (event, open) => {
-  //   if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-  //     return;
-  //   }
-  //   setNav(open);
-  // };
-
   return (
     <div>
       <Box sx={{ flexGrow: 1 }}>
@@ -97,37 +89,6 @@ export default function Header() {
                   CHECK THE MATCH
                 </Link>
               </Typography>
-              
-              {/* Phone nav view - Removed as no link being shown, just a landing page
-              <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-                <IconButton
-                  size="large"
-                  aria-label="Navigation menu"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
-                  onClick={(e) => {toggleDrawer(e, true)}}
-                  color="inherit"
-                >
-                  <MenuIcon />
-                </IconButton>
-                <Drawer
-                  id="menu-appbar"
-                  anchor='top'
-                  open={navDrawer}
-                  onClose={(e) => {toggleDrawer(e, false)}}
-                  sx={{
-                    display: { xs: 'block', md: 'none' },
-                  }}
-                >
-                  <DialogTitle textAlign="right">
-                    <IconButton
-                      onClick={(e) => {toggleDrawer(e, false)}}
-                    >
-                      <CancelIcon />
-                    </IconButton>
-                  </DialogTitle>
-                </Drawer>
-              </Box> */}
 
               <Autocomplete
                 options={results}
