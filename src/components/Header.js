@@ -1,4 +1,4 @@
-import axios from 'axios';
+import apiClient from '../services/apiConfig';
 import React, { useEffect, useState } from 'react'
 import { 
   AppBar,
@@ -32,12 +32,8 @@ export default function Header() {
   
   useEffect(() => {
     const search = async () => {
-        const { data }  = await axios.get('https://api-football-v1.p.rapidapi.com/v3/leagues', {
-          params: { search: term },
-          headers: {
-            'x-rapidapi-host': process.env.REACT_APP_API_HOST,
-            'x-rapidapi-key': process.env.REACT_APP_API_KEY
-          }
+        const { data }  = await apiClient.get('/leagues', {
+          params: { search: term }
         })
         if (data.response.length > 0 && term !== '') {
           setResults(data.response)
