@@ -35,7 +35,7 @@ The API in use for the football data is [API-Football](https://www.api-football.
 
 For the application to run it will require two environment variables. 
 
-For the API I used API-Football through [RAPID API](https://rapidapi.com/api-sports/api/api-football/). You will need `REACT_APP_API_HOST` and `REACT_APP_API_KEY` in your `.env` file which will be provided from RADPI API.
+For the API I used API-Football through [RAPID API](https://rapidapi.com/api-sports/api/api-football/). You will need `REACT_APP_API_HOST` and `REACT_APP_API_KEY` in your `.env` file which will be provided from RAPID API.
 
 ### Run Locally
 
