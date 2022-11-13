@@ -9,7 +9,6 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import Home from './components/Home'
 import League from './components/League'
-import Contact from './components/Contact'
 import NotFound from './components/NotFound'
 
 let theme = createTheme({
@@ -33,7 +32,6 @@ function App() {
             <Route path="*" element={<NotFound />}/>
             <Route exact path="/" element={<Home/>}/>
             <Route exact path="/league/:league_id" element={<League/>}/>
-            <Route exact path="/contact" element={<Contact />}/>
           </Routes>
         <Footer />
       </ThemeProvider>
