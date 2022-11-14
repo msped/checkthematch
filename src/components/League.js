@@ -1,17 +1,19 @@
 import apiClient from "../api/apiConfig";
 import React, { useState, useEffect } from "react";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
-import TextField from "@mui/material/TextField";
-import Grid from "@mui/material/Grid";
-import Container from "@mui/material/Container";
+import {
+    Container,
+    Grid,
+    TextField,
+    Typography,
+    Card,
+    CardContent,
+    Stack,
+} from "@mui/material";
 import { useParams } from "react-router-dom";
 
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DatePicker from "@mui/lab/DatePicker";
-import Stack from "@mui/material/Stack";
 
 import Fixtures from "../components/Fixtures";
 import LeagueSkeleton from "../components/skeletons/LeagueSkeleton";

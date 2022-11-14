@@ -1,17 +1,19 @@
 import apiClient from "../api/apiConfig";
 import React, { useState, Fragment, useEffect } from "react";
+import {
+    Grid,
+    Box,
+    Tab,
+    Tabs,
+    Slide,
+    Toolbar,
+    AppBar,
+    Dialog,
+    Button,
+    IconButton,
+} from "@mui/material";
 import PropTypes from "prop-types";
-import Button from "@mui/material/Button";
-import Dialog from "@mui/material/Dialog";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import Slide from "@mui/material/Slide";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
 
 import StatisticsSkeleton from "../components/skeletons/StatisticsSkeleton";
 import MatchPlayers from "../components/MatchPlayers";
