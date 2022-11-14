@@ -32,7 +32,7 @@ function TabPanel(props) {
             aria-labelledby={`simple-tab-${index}`}
             {...other}
         >
-            {value === index && <Box sx={{ p: 0.5 }}>{children}</Box>}
+            {value === index && <Box p={0.5}>{children}</Box>}
         </div>
     );
 }
@@ -89,7 +89,6 @@ export default function Statistics({ fixture }) {
                 >
                     <Tab label="Statistics" {...a11yProps(0)} />
                     <Tab label="Players" {...a11yProps(1)} />
-                    {/* <Tab label="Item Three" {...a11yProps(2)} /> */}
                 </Tabs>
             </Grid>
         );
@@ -132,9 +131,6 @@ export default function Statistics({ fixture }) {
                                 events={fixtureData.events}
                             />
                         </TabPanel>
-                        {/* <TabPanel value={value} index={2}>
-                            Item Three
-                        </TabPanel> */}
                     </Box>
                 )}
             </Dialog>

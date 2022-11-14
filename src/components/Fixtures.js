@@ -45,15 +45,12 @@ export default function Fixtures({ leagueID, season }) {
                     next={fetchData}
                     hasMore={hasMore}
                     loader={
-                        <Stack alignItems="center" sx={{ marginY: 4 }}>
+                        <Stack alignItems="center" my={4}>
                             <CircularProgress color="secondary" />
                         </Stack>
                     }
                     endMessage={
-                        <Typography
-                            style={{ textAlign: "center" }}
-                            sx={{ marginY: 5 }}
-                        >
+                        <Typography style={{ textAlign: "center" }} my={5}>
                             No more fixtures in this season.
                         </Typography>
                     }
@@ -67,7 +64,7 @@ export default function Fixtures({ leagueID, season }) {
                     >
                         {fixtures.slice(0, visibleFixtures).map((fixture) => (
                             <Grid item key={fixture.fixture.id} xs={12}>
-                                <Fixture key={fixture.id} fixture={fixture} />
+                                <Fixture fixture={fixture} />
                             </Grid>
                         ))}
                     </Grid>
@@ -82,8 +79,8 @@ export default function Fixtures({ leagueID, season }) {
                     sx={{
                         textAlign: "center",
                         minHeight: "30vh",
-                        padding: 5,
                     }}
+                    p={5}
                 >
                     There is no fixtures for this season.
                 </Typography>

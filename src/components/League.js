@@ -38,7 +38,7 @@ export default function League() {
         search();
     }, [league_id]);
 
-    const leagueInfo = () => {
+    const leagueDetails = () => {
         return (
             <Card>
                 <CardContent>
@@ -118,10 +118,10 @@ export default function League() {
     };
 
     return (
-        <Container maxWidth="md" sx={{ marginTop: 3 }}>
-            <Grid container spacing={1}>
+        <Container maxWidth="md">
+            <Grid container spacing={2} mt={3}>
                 <Grid item xs={12}>
-                    {loading ? <LeagueSkeleton /> : leagueInfo()}
+                    {loading ? <LeagueSkeleton /> : leagueDetails()}
                 </Grid>
                 <Grid item xs={12}>
                     <Fixtures leagueID={league_id} season={season} />
