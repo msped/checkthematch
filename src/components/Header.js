@@ -1,4 +1,4 @@
-import axios from 'axios';
+import apiClient from '../services/apiConfig';
 import React, { useEffect, useState } from 'react'
 import { 
   AppBar,
@@ -27,18 +27,13 @@ const theme = createTheme({
 export default function Header() {
   const [term, setTerm] = useState('')
   const [results, setResults] = useState([])
-  // const [navDrawer, setNav] = useState(false);
 
   const nav = useNavigate()
   
   useEffect(() => {
     const search = async () => {
-        const { data }  = await axios.get('https://api-football-v1.p.rapidapi.com/v3/leagues', {
-          params: { search: term },
-          headers: {
-            'x-rapidapi-host': process.env.REACT_APP_API_HOST,
-            'x-rapidapi-key': process.env.REACT_APP_API_KEY
-          }
+        const { data }  = await apiClient.get('/leagues', {
+          params: { search: term }
         })
         if (data.response.length > 0 && term !== '') {
           setResults(data.response)
@@ -67,13 +62,6 @@ export default function Header() {
     }
   }
 
-  // const toggleDrawer = (event, open) => {
-  //   if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-  //     return;
-  //   }
-  //   setNav(open);
-  // };
-
   return (
     <div>
       <Box sx={{ flexGrow: 1 }}>
@@ -97,37 +85,6 @@ export default function Header() {
                   CHECK THE MATCH
                 </Link>
               </Typography>
-              
-              {/* Phone nav view - Removed as no link being shown, just a landing page
-              <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-                <IconButton
-                  size="large"
-                  aria-label="Navigation menu"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
-                  onClick={(e) => {toggleDrawer(e, true)}}
-                  color="inherit"
-                >
-                  <MenuIcon />
-                </IconButton>
-                <Drawer
-                  id="menu-appbar"
-                  anchor='top'
-                  open={navDrawer}
-                  onClose={(e) => {toggleDrawer(e, false)}}
-                  sx={{
-                    display: { xs: 'block', md: 'none' },
-                  }}
-                >
-                  <DialogTitle textAlign="right">
-                    <IconButton
-                      onClick={(e) => {toggleDrawer(e, false)}}
-                    >
-                      <CancelIcon />
-                    </IconButton>
-                  </DialogTitle>
-                </Drawer>
-              </Box> */}
 
               <Autocomplete
                 options={results}

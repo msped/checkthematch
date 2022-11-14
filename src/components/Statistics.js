@@ -1,4 +1,4 @@
-import axios from 'axios'
+import apiClient from '../services/apiConfig';
 import React, { useState, Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
@@ -62,12 +62,8 @@ export default function Statistics({ fixture }) {
 
     useEffect(() => {
       const search = async () => {
-        const { data }  = await axios.get('https://api-football-v1.p.rapidapi.com/v3/fixtures', {
-          params: { id: fixture },
-          headers: {
-            'x-rapidapi-host': process.env.REACT_APP_API_HOST,
-            'x-rapidapi-key': process.env.REACT_APP_API_KEY
-          }
+        const { data }  = await apiClient.get('/fixtures', {
+          params: { id: fixture }
         })
         setFixtureData(data.response[0])
         setLoading(false)

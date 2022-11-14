@@ -1,4 +1,4 @@
-import axios from 'axios';
+import apiClient from '../services/apiConfig';
 import React, { useState, useEffect } from 'react'
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -26,12 +26,8 @@ export default function League() {
 
     useEffect(() => {
         const search = async () => {
-            const { data }  = await axios.get('https://api-football-v1.p.rapidapi.com/v3/leagues', {
-              params: { id: league_id, current: 'true' },
-              headers: {
-                'x-rapidapi-host': process.env.REACT_APP_API_HOST,
-                'x-rapidapi-key': process.env.REACT_APP_API_KEY
-              }
+            const { data }  = await apiClient.get('/leagues', {
+              params: { id: league_id, current: 'true' }
             })
             setLeague(data.response[0])
             const currentSeason = data.response[0].seasons[0].year

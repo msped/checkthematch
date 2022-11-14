@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+import apiClient from '../services/apiConfig';
 import {
     Typography,
     Grid,
@@ -20,12 +20,8 @@ export default function Fixtures({leagueID, season}) {
 
     useEffect(() => {
         const search = async () => {
-            const { data }  = await axios.get('https://api-football-v1.p.rapidapi.com/v3/fixtures', {
-              params: { league: leagueID, season: season, status: 'FT' },
-              headers: {
-                'x-rapidapi-host': process.env.REACT_APP_API_HOST,
-                'x-rapidapi-key': process.env.REACT_APP_API_KEY
-              }
+            const { data }  = await apiClient.get('/fixtures', {
+              params: { league: leagueID, season: season, status: 'FT' }
             })
             setFixtures(data.response)
             setIsLoading(false)
