@@ -55,8 +55,7 @@ export default function Header() {
 
     const HandleNavigation = (value) => {
         if (value !== "" || value !== undefined || value !== null) {
-            const path = "/league/" + value.league.id;
-            nav(path);
+            nav(`/league/${value.league.id}`);
             setTerm("");
         }
     };

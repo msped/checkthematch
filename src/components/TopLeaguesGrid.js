@@ -13,8 +13,6 @@ import LazyLoad from "react-lazyload";
 
 export default function TopLeaguesGrid() {
     const card = (item) => {
-        const path = "/league/" + item.id;
-
         return (
             <Grid key={item.id} item xs={12} sm={6} md={4}>
                 <Card>
@@ -26,7 +24,7 @@ export default function TopLeaguesGrid() {
                                 md: "135px",
                             },
                         }}
-                        href={path}
+                        href={`/league/${item.id}`}
                     >
                         <CardContent>
                             <Grid container spacing={1}>
