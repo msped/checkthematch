@@ -1,4 +1,4 @@
-import apiClient from '../services/apiConfig';
+import apiClient from '../api/apiConfig';
 import React, { useState, Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';

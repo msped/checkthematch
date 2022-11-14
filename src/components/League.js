@@ -1,4 +1,4 @@
-import apiClient from '../services/apiConfig';
+import apiClient from '../api/apiConfig';
 import React, { useState, useEffect } from 'react'
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';

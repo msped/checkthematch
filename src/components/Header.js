@@ -1,4 +1,4 @@
-import apiClient from '../services/apiConfig';
+import apiClient from '../api/apiConfig';
 import React, { useEffect, useState } from 'react'
 import { 
   AppBar,
