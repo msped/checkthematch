@@ -1,42 +1,42 @@
-import apiClient from '../api/apiConfig';
-import React, { useState, useEffect } from 'react'
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
-import Grid from '@mui/material/Grid';
-import Container from '@mui/material/Container';
-import { useParams } from 'react-router-dom'
+import apiClient from "../api/apiConfig";
+import React, { useState, useEffect } from "react";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import TextField from "@mui/material/TextField";
+import Grid from "@mui/material/Grid";
+import Container from "@mui/material/Container";
+import { useParams } from "react-router-dom";
 
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import DatePicker from '@mui/lab/DatePicker';
-import Stack from '@mui/material/Stack';
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import DatePicker from "@mui/lab/DatePicker";
+import Stack from "@mui/material/Stack";
 
-import Fixtures from '../components/Fixtures'
-import LeagueSkeleton from '../components/skeletons/LeagueSkeleton'
+import Fixtures from "../components/Fixtures";
+import LeagueSkeleton from "../components/skeletons/LeagueSkeleton";
 
 export default function League() {
-    const currentYear = new Date().getFullYear()
-    const [league, setLeague] = useState([])
-    const [season, setSeason] = useState('2021')
-    const [loading, setLoading] = useState(true)
-    
-    let { league_id } = useParams()
+    const currentYear = new Date().getFullYear();
+    const [league, setLeague] = useState([]);
+    const [season, setSeason] = useState("2021");
+    const [loading, setLoading] = useState(true);
+
+    let { league_id } = useParams();
 
     useEffect(() => {
         const search = async () => {
-            const { data }  = await apiClient.get('/leagues', {
-              params: { id: league_id, current: 'true' }
-            })
-            setLeague(data.response[0])
-            const currentSeason = data.response[0].seasons[0].year
-            let newYear = new Date(currentSeason.toString()).getFullYear()
-            setSeason(newYear.toString())
-            setLoading(false)
-        }
-        search()
-      }, [league_id])
+            const { data } = await apiClient.get("/leagues", {
+                params: { id: league_id, current: "true" },
+            });
+            setLeague(data.response[0]);
+            const currentSeason = data.response[0].seasons[0].year;
+            let newYear = new Date(currentSeason.toString()).getFullYear();
+            setSeason(newYear.toString());
+            setLoading(false);
+        };
+        search();
+    }, [league_id]);
 
     const leagueInfo = () => {
         return (
@@ -44,33 +44,36 @@ export default function League() {
                 <CardContent>
                     <Grid container spacing={2}>
                         <Grid item xs={4} md={2}>
-                            <img 
+                            <img
                                 src={league.league.logo}
                                 alt={league.league.name}
-                                width='150'
-                                height='150'
+                                width="150"
+                                height="150"
                                 style={{
-                                    width: '100%',
-                                    height: "auto"
+                                    width: "100%",
+                                    height: "auto",
                                 }}
                             />
                         </Grid>
                         <Grid item xs={8} md={8}>
                             <Grid container spacing={1}>
                                 <Grid item xs={12}>
-                                    <Typography variant="h2" sx={{ fontWeight: '400' }}>
+                                    <Typography
+                                        variant="h2"
+                                        sx={{ fontWeight: "400" }}
+                                    >
                                         {league.league.name}
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={2} sm={1}>
-                                    <img 
+                                    <img
                                         src={league.country.flag}
                                         alt={league.country.name}
-                                        width='150'
-                                        height='150'
+                                        width="150"
+                                        height="150"
                                         style={{
-                                            width: '100%',
-                                            height: "auto"
+                                            width: "100%",
+                                            height: "auto",
                                         }}
                                     />
                                 </Grid>
@@ -85,16 +88,25 @@ export default function League() {
                             <LocalizationProvider dateAdapter={AdapterDateFns}>
                                 <Stack spacing={3}>
                                     <DatePicker
-                                        views={['year']}
+                                        views={["year"]}
                                         label="Select Season"
                                         value={season}
                                         onChange={(newSeason) => {
-                                            let newYear = new Date(newSeason).getFullYear()
+                                            let newYear = new Date(
+                                                newSeason
+                                            ).getFullYear();
                                             setSeason(newYear.toString());
                                         }}
-                                        minDate={new Date('2010-01-01')}
-                                        maxDate={new Date(`${currentYear}-01-01`)}
-                                        renderInput={(params) => <TextField {...params} helperText={null} />}
+                                        minDate={new Date("2010-01-01")}
+                                        maxDate={
+                                            new Date(`${currentYear}-01-01`)
+                                        }
+                                        renderInput={(params) => (
+                                            <TextField
+                                                {...params}
+                                                helperText={null}
+                                            />
+                                        )}
                                     />
                                 </Stack>
                             </LocalizationProvider>
@@ -102,22 +114,19 @@ export default function League() {
                     </Grid>
                 </CardContent>
             </Card>
-        )
-    }
-    
+        );
+    };
+
     return (
-        <Container maxWidth="md" sx={{ marginTop: 3}}>
+        <Container maxWidth="md" sx={{ marginTop: 3 }}>
             <Grid container spacing={1}>
                 <Grid item xs={12}>
-                    { loading ? <LeagueSkeleton /> : leagueInfo()}
+                    {loading ? <LeagueSkeleton /> : leagueInfo()}
                 </Grid>
                 <Grid item xs={12}>
-                    <Fixtures
-                        leagueID={league_id}
-                        season={season}
-                    />
+                    <Fixtures leagueID={league_id} season={season} />
                 </Grid>
             </Grid>
         </Container>
-    )
+    );
 }

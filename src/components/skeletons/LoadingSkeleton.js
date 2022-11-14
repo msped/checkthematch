@@ -1,19 +1,17 @@
-import React from 'react'
-import {
-    Skeleton,
-    Grid,
-    Typography,
-    Stack,
-} from '@mui/material'
+import React from "react";
+import { Skeleton, Grid, Typography, Stack } from "@mui/material";
 
 export default function LoadingSkeleton() {
-
     const itemSkeleton = () => {
         return (
-            <li style={{listStyle: 'none'}}>
+            <li style={{ listStyle: "none" }}>
                 <Grid container spacing={2}>
                     <Grid item xs={2}>
-                        <Skeleton variant='rectangular' width="100%" height="100%"/>
+                        <Skeleton
+                            variant="rectangular"
+                            width="100%"
+                            height="100%"
+                        />
                     </Grid>
                     <Grid item xs={10}>
                         <Typography>
@@ -22,8 +20,8 @@ export default function LoadingSkeleton() {
                     </Grid>
                 </Grid>
             </li>
-        )
-    }
+        );
+    };
 
     return (
         <Stack direction="column" spacing={2}>
@@ -33,7 +31,5 @@ export default function LoadingSkeleton() {
             {itemSkeleton()}
             {itemSkeleton()}
         </Stack>
-        
-
-    )
+    );
 }
