@@ -1,5 +1,4 @@
-import apiClient from "../api/apiConfig";
-import React, { useState, Fragment, useEffect } from "react";
+import React, { useState, Fragment } from "react";
 import {
     Grid,
     Box,
@@ -18,6 +17,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import StatisticsSkeleton from "../components/skeletons/StatisticsSkeleton";
 import MatchPlayers from "../components/MatchPlayers";
 import MatchStats from "../components/MatchStats";
+import useGetStatistics from "../hooks/useGetStatistics";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
@@ -53,23 +53,10 @@ function a11yProps(index) {
 }
 
 export default function Statistics({ fixture }) {
-    const [fixtureData, setFixtureData] = useState([]);
     const [open, setOpen] = useState(false);
-    const [value, setValue] = useState();
-    const [loading, setLoading] = useState(true);
+    const [value, setValue] = useState(0);
 
-    useEffect(() => {
-        const search = async () => {
-            const { data } = await apiClient.get("/fixtures", {
-                params: { id: fixture },
-            });
-            setFixtureData(data.response[0]);
-            setLoading(false);
-        };
-        if (open) {
-            search();
-        }
-    }, [open]);
+    const { matchStatistics, loading } = useGetStatistics(fixture, open);
 
     const handleDialogToggle = () => {
         setOpen(!open);
@@ -79,7 +66,6 @@ export default function Statistics({ fixture }) {
     const handleTabToggle = (event, newValue) => {
         setValue(newValue);
     };
-
     const TabNav = ({ value }) => {
         return (
             <Grid container justifyContent="center">
@@ -125,12 +111,12 @@ export default function Statistics({ fixture }) {
                 ) : (
                     <Box sx={{ width: "100%" }}>
                         <TabPanel value={value} index={0}>
-                            <MatchStats stats={fixtureData.statistics} />
+                            <MatchStats stats={matchStatistics.statistics} />
                         </TabPanel>
                         <TabPanel value={value} index={1}>
                             <MatchPlayers
-                                players={fixtureData.lineups}
-                                events={fixtureData.events}
+                                players={matchStatistics.lineups}
+                                events={matchStatistics.events}
                             />
                         </TabPanel>
                     </Box>
