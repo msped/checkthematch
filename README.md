@@ -1,4 +1,3 @@
-
 # Check the Match
 
 Check the Match is a React application using the Material UI library and API-Football to display football match statistics without showing the final score, giving the user enough data to make an informed decision on whether to watch the match.
@@ -33,16 +32,15 @@ The API in use for the football data is [API-Football](https://www.api-football.
 
 ### Environment Variables
 
-For the application to run it will require two environment variables. 
+For the application to run it will require two environment variables.
 
-For the API I used API-Football through [RAPID API](https://rapidapi.com/api-sports/api/api-football/). You will need `REACT_APP_API_HOST` and `REACT_APP_API_KEY` in your `.env` file which will be provided from RAPID API.
+For the API I used API-Football through [RAPID API](https://rapidapi.com/api-sports/api/api-football/). You will need `REACT_APP_API_HOST` (`x-rapidapi-host`) and `REACT_APP_API_KEY` (`x-rapidapi-key`) in your `.env` file which will be provided from RAPID API.
 
 ### Run Locally
 
-To run locally open your console and run `git clone https://github.com/msped/shouldiwatchit.git` then change into the folder path.
+To run locally open your console and run `git clone https://github.com/msped/shouldiwatchit.git` then cd into the folder path.
 
 To run the developement server, type `npm start` in your console and press enter. It will open a new browser window, or tab if you haven't got one open, where you will see the developemnt server on localhost port 3000.
-
 
 ### Run a production build
 
