@@ -21,7 +21,7 @@ import LeagueSkeleton from "../components/skeletons/LeagueSkeleton";
 export default function League() {
     const currentYear = new Date().getFullYear();
     const [league, setLeague] = useState([]);
-    const [season, setSeason] = useState("2021");
+    const [season, setSeason] = useState();
     const [loading, setLoading] = useState(true);
 
     let { league_id } = useParams();
