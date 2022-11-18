@@ -12,7 +12,12 @@ import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DatePicker from "@mui/lab/DatePicker";
 
-export default function leagueDetails({ league, season, setSeason }) {
+export default function leagueDetails({
+    league,
+    season,
+    setSeason,
+    currentYear,
+}) {
     return (
         <Card>
             <CardContent>
@@ -72,7 +77,7 @@ export default function leagueDetails({ league, season, setSeason }) {
                                         setSeason(newYear.toString());
                                     }}
                                     minDate={new Date("2010-01-01")}
-                                    maxDate={new Date(`${season}-01-01`)}
+                                    maxDate={new Date(`${currentYear}-01-01`)}
                                     renderInput={(params) => (
                                         <TextField
                                             {...params}

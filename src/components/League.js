@@ -32,6 +32,7 @@ export default function League() {
                             league={league}
                             season={season}
                             setSeason={handleSetSeason}
+                            currentYear={currentYear}
                         />
                     )}
                 </Grid>
