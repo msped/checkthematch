@@ -1,35 +1,23 @@
 import React, { useEffect, useState } from "react";
-import apiClient from "../api/apiConfig";
 import { Typography, Grid, Stack, CircularProgress } from "@mui/material";
 
 import InfiniteScroll from "react-infinite-scroll-component";
 
 import FixturesSkeleton from "../components/skeletons/FixturesSkeleton";
 import Fixture from "../components/Fixture";
+import useGetFixtures from "../hooks/useGetFixtures";
 
 export default function Fixtures({ leagueID, season }) {
-    const [fixtures, setFixtures] = useState([]);
     const [visibleFixtures, setVisibleFixtures] = useState(10);
-    const [isLoading, setIsLoading] = useState(true);
     const [hasMore, setHasMore] = useState(true);
-
-    useEffect(() => {
-        const search = async () => {
-            const { data } = await apiClient.get("/fixtures", {
-                params: { league: leagueID, season: season, status: "FT" },
-            });
-            setFixtures(data.response);
-            setIsLoading(false);
-        };
-        search();
-    }, [leagueID, season]);
+    const { fixtures, loading } = useGetFixtures(leagueID, season);
 
     useEffect(() => {
         setVisibleFixtures(10);
         setHasMore(true);
     }, [leagueID, season]);
 
-    const fetchData = () => {
+    const fetchNextTenFixtures = () => {
         let newAmount = visibleFixtures + 10;
         setVisibleFixtures(newAmount);
         if (visibleFixtures >= fixtures.length) {
@@ -39,21 +27,18 @@ export default function Fixtures({ leagueID, season }) {
 
     return (
         <>
-            {fixtures.length > 0 && !isLoading && (
+            {fixtures.length > 0 && !loading && (
                 <InfiniteScroll
                     dataLength={visibleFixtures}
-                    next={fetchData}
+                    next={fetchNextTenFixtures}
                     hasMore={hasMore}
                     loader={
-                        <Stack alignItems="center" sx={{ marginY: 4 }}>
+                        <Stack alignItems="center" my={4}>
                             <CircularProgress color="secondary" />
                         </Stack>
                     }
                     endMessage={
-                        <Typography
-                            style={{ textAlign: "center" }}
-                            sx={{ marginY: 5 }}
-                        >
+                        <Typography style={{ textAlign: "center" }} my={5}>
                             No more fixtures in this season.
                         </Typography>
                     }
@@ -67,23 +52,23 @@ export default function Fixtures({ leagueID, season }) {
                     >
                         {fixtures.slice(0, visibleFixtures).map((fixture) => (
                             <Grid item key={fixture.fixture.id} xs={12}>
-                                <Fixture key={fixture.id} fixture={fixture} />
+                                <Fixture fixture={fixture} />
                             </Grid>
                         ))}
                     </Grid>
                 </InfiniteScroll>
             )}
 
-            {isLoading && <FixturesSkeleton />}
+            {loading && <FixturesSkeleton />}
 
-            {!isLoading && fixtures.length === 0 && (
+            {!loading && fixtures.length === 0 && (
                 <Typography
                     variant="h5"
                     sx={{
                         textAlign: "center",
                         minHeight: "30vh",
-                        padding: 5,
                     }}
+                    p={5}
                 >
                     There is no fixtures for this season.
                 </Typography>

@@ -1,5 +1,5 @@
-import { Typography, Stack } from "@mui/material";
 import React from "react";
+import { Typography, Stack } from "@mui/material";
 
 import Event from "../components/Event";
 

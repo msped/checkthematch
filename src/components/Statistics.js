@@ -1,21 +1,23 @@
-import apiClient from "../api/apiConfig";
-import React, { useState, Fragment, useEffect } from "react";
+import React, { useState, Fragment } from "react";
+import {
+    Grid,
+    Box,
+    Tab,
+    Tabs,
+    Slide,
+    Toolbar,
+    AppBar,
+    Dialog,
+    Button,
+    IconButton,
+} from "@mui/material";
 import PropTypes from "prop-types";
-import Button from "@mui/material/Button";
-import Dialog from "@mui/material/Dialog";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import Slide from "@mui/material/Slide";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
 
 import StatisticsSkeleton from "../components/skeletons/StatisticsSkeleton";
 import MatchPlayers from "../components/MatchPlayers";
 import MatchStats from "../components/MatchStats";
+import useGetStatistics from "../hooks/useGetStatistics";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
@@ -32,7 +34,7 @@ function TabPanel(props) {
             aria-labelledby={`simple-tab-${index}`}
             {...other}
         >
-            {value === index && <Box sx={{ p: 0.5 }}>{children}</Box>}
+            {value === index && <Box p={0.5}>{children}</Box>}
         </div>
     );
 }
@@ -51,23 +53,10 @@ function a11yProps(index) {
 }
 
 export default function Statistics({ fixture }) {
-    const [fixtureData, setFixtureData] = useState([]);
     const [open, setOpen] = useState(false);
-    const [value, setValue] = useState();
-    const [loading, setLoading] = useState(true);
+    const [value, setValue] = useState(0);
 
-    useEffect(() => {
-        const search = async () => {
-            const { data } = await apiClient.get("/fixtures", {
-                params: { id: fixture },
-            });
-            setFixtureData(data.response[0]);
-            setLoading(false);
-        };
-        if (open) {
-            search();
-        }
-    }, [open]);
+    const { matchStatistics, loading } = useGetStatistics(fixture, open);
 
     const handleDialogToggle = () => {
         setOpen(!open);
@@ -77,7 +66,6 @@ export default function Statistics({ fixture }) {
     const handleTabToggle = (event, newValue) => {
         setValue(newValue);
     };
-
     const TabNav = ({ value }) => {
         return (
             <Grid container justifyContent="center">
@@ -89,7 +77,6 @@ export default function Statistics({ fixture }) {
                 >
                     <Tab label="Statistics" {...a11yProps(0)} />
                     <Tab label="Players" {...a11yProps(1)} />
-                    {/* <Tab label="Item Three" {...a11yProps(2)} /> */}
                 </Tabs>
             </Grid>
         );
@@ -124,17 +111,14 @@ export default function Statistics({ fixture }) {
                 ) : (
                     <Box sx={{ width: "100%" }}>
                         <TabPanel value={value} index={0}>
-                            <MatchStats stats={fixtureData.statistics} />
+                            <MatchStats stats={matchStatistics.statistics} />
                         </TabPanel>
                         <TabPanel value={value} index={1}>
                             <MatchPlayers
-                                players={fixtureData.lineups}
-                                events={fixtureData.events}
+                                players={matchStatistics.lineups}
+                                events={matchStatistics.events}
                             />
                         </TabPanel>
-                        {/* <TabPanel value={value} index={2}>
-                            Item Three
-                        </TabPanel> */}
                     </Box>
                 )}
             </Dialog>

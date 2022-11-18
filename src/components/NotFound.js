@@ -6,18 +6,20 @@ import {
     Stack,
     Card,
     CardContent,
+    Box,
 } from "@mui/material";
 
 export default function NotFound() {
     return (
-        <Container maxWidth="md" sx={{ marginTop: 5 }}>
-            <Card sx={{ minHeight: "40vh" }}>
+        <Container maxWidth="md" component={Box} mt={5}>
+            <Card sx={{ minHeight: "40vh" }} mt={5}>
                 <CardContent>
                     <Stack direction="column" spacing={4}>
                         <Typography
                             variant="h2"
                             component="h1"
-                            sx={{ textAlign: "center", marginY: 4 }}
+                            my={4}
+                            sx={{ textAlign: "center" }}
                         >
                             404 Page not found
                         </Typography>
@@ -25,7 +27,8 @@ export default function NotFound() {
                         <Typography
                             color="text.secondary"
                             variant="body1"
-                            sx={{ marginY: 3, textAlign: "center" }}
+                            my={3}
+                            sx={{ textAlign: "center" }}
                         >
                             You head back, I'll hope the fence and grab the
                             ball.

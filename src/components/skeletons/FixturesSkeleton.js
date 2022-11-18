@@ -1,9 +1,12 @@
 import React from "react";
-import Skeleton from "@mui/material/Skeleton";
-import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
-import Stack from "@mui/material/Stack";
-import { Card, CardContent } from "@mui/material";
+import {
+    Card,
+    CardContent,
+    Stack,
+    Typography,
+    Grid,
+    Skeleton,
+} from "@mui/material";
 
 export default function FixturesSkeleton() {
     const skeleton = () => {

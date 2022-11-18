@@ -7,11 +7,11 @@ import { GetPlayerEvent } from "../utlis";
 
 export default function TeamPlayers({ lineup, events, side }) {
     return (
-        <Box sx={{ mx: 2, marginY: 5 }}>
+        <Box mx={2} my={5}>
             <Card>
                 <CardContent>
                     <Grid container spacing={2}>
-                        <Grid item xs={12} sx={{ marginTop: 3 }}>
+                        <Grid item xs={12} mt={3}>
                             <Stack alignItems="center">
                                 <img
                                     alt={lineup.team.name}

@@ -1,9 +1,5 @@
 import React from "react";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
-import Grid from "@mui/material/Grid";
-
+import { Grid, Typography, Card, CardContent } from "@mui/material";
 import LazyLoad from "react-lazyload";
 
 import Statistics from "../components/Statistics";
@@ -21,29 +17,17 @@ function Fixture({ fixture }) {
                     spacing={1}
                     sx={{ paddingBottom: 1, backgroundColor: "#353535" }}
                 >
-                    <Grid
-                        item
-                        xs={3}
-                        sx={{ textAlign: "center", marginTop: 1 }}
-                    >
+                    <Grid item xs={3} mt={1} sx={{ textAlign: "center" }}>
                         <Typography variant="subtitle1" color="textSecondary">
                             Home
                         </Typography>
                     </Grid>
-                    <Grid
-                        item
-                        xs={6}
-                        sx={{ textAlign: "center", marginTop: 1 }}
-                    >
+                    <Grid item xs={6} mt={1} sx={{ textAlign: "center" }}>
                         <Typography variant="subtitle1">
                             {format(date, "dd/MM/yyyy")}
                         </Typography>
                     </Grid>
-                    <Grid
-                        item
-                        xs={3}
-                        sx={{ textAlign: "center", marginTop: 1 }}
-                    >
+                    <Grid item xs={3} mt={1} sx={{ textAlign: "center" }}>
                         <Typography variant="subtitle1" color="textSecondary">
                             Away
                         </Typography>
@@ -63,7 +47,7 @@ function Fixture({ fixture }) {
                     </Grid>
                 </Grid>
 
-                <Grid container spacing={1} sx={{ marginTop: 1, padding: 1 }}>
+                <Grid container spacing={1} mt={1} p={1}>
                     <Grid item xs={3} md={2} sx={{ textAlign: "center" }}>
                         <LazyLoad height={150}>
                             <img
@@ -130,7 +114,7 @@ function Fixture({ fixture }) {
                                         </Grid>
                                     )}
                                 </Grid>
-                                <Grid item xs={12} sx={{ marginTop: 1.5 }}>
+                                <Grid item xs={12} mt={1.5}>
                                     <Statistics fixture={fixture.fixture.id} />
                                 </Grid>
                             </Grid>
