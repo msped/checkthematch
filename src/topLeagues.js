@@ -1,84 +1,70 @@
-import Prem from './images/topTenLeagues/League/39-min.png'
-import Ligue1 from './images/topTenLeagues/League/61-min.png'
-import SerieA from './images/topTenLeagues/League/135-min.png'
-import Bundesliga from './images/topTenLeagues/League/78-min.png'
-import LaLiga from './images/topTenLeagues/League/140-min.png'
-import MLS from './images/topTenLeagues/League/866-min.png'
-
-import England from './images/topTenLeagues/Country/39.svg'
-import France from './images/topTenLeagues/Country/61.svg'
-import Italy from './images/topTenLeagues/Country/71.svg'
-import Germany from './images/topTenLeagues/Country/78.svg'
-import Spain from './images/topTenLeagues/Country/140.svg'
-import USA from './images/topTenLeagues/Country/866.svg'
-
 const topLeagues = [
     {
-        "id": 39,
-        "league": {
-            "name": "Premier League",
-            "logo": Prem
+        id: 39,
+        league: {
+            name: "Premier League",
+            logo: "https://media.api-sports.io/football/leagues/39.png",
         },
-        "country": {
-            "name": "England",
-            "logo": England
-        }
+        country: {
+            name: "England",
+            logo: "https://media.api-sports.io/flags/gb.svg",
+        },
     },
     {
-        "id": 140,
-        "league": {
-            "name": "La Liga",
-            "logo": LaLiga
+        id: 140,
+        league: {
+            name: "La Liga",
+            logo: "https://media.api-sports.io/football/leagues/140.png",
         },
-        "country": {
-            "name": "Spain",
-            "logo": Spain
-        }
+        country: {
+            name: "Spain",
+            logo: "https://media.api-sports.io/flags/es.svg",
+        },
     },
     {
-        "id": 61,
-        "league": {
-            "name": "Ligue 1",
-            "logo": Ligue1
+        id: 61,
+        league: {
+            name: "Ligue 1",
+            logo: "https://media.api-sports.io/football/leagues/61.png",
         },
-        "country": {
-            "name": "France",
-            "logo": France
-        }
+        country: {
+            name: "France",
+            logo: "https://media.api-sports.io/flags/fr.svg",
+        },
     },
     {
-        "id": 135,
-        "league": {
-            "name": "Serie A",
-            "logo": SerieA
+        id: 135,
+        league: {
+            name: "Serie A",
+            logo: "https://media.api-sports.io/football/leagues/135.png",
         },
-        "country": {
-            "name": "Italy",
-            "logo": Italy
-        }
+        country: {
+            name: "Italy",
+            logo: "https://media.api-sports.io/flags/it.svg",
+        },
     },
     {
-        "id": 866,
-        "league": {
-            "name": "Major League Soccer",
-            "logo": MLS
+        id: 866,
+        league: {
+            name: "Major League Soccer",
+            logo: "https://media.api-sports.io/football/leagues/866.png",
         },
-        "country": {
-            "name": "USA",
-            "logo": USA
-        }
+        country: {
+            name: "USA",
+            logo: "https://media.api-sports.io/flags/us.svg",
+        },
     },
     {
-        "id": 78,
-        "league": {
-            "name": "Bundesliga",
-            "logo": Bundesliga
+        id: 78,
+        league: {
+            name: "Bundesliga",
+            logo: "https://media.api-sports.io/football/leagues/78.png",
         },
-        "country": {
-            "name": "Germany",
-            "logo": Germany
-        }
+        country: {
+            name: "Germany",
+            logo: "https://media.api-sports.io/flags/de.svg",
+        },
     },
-]
+];
 
-export default topLeagues
+export default topLeagues;
