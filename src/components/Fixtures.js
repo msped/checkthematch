@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Typography, Grid, Stack, CircularProgress } from "@mui/material";
 
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -9,20 +9,11 @@ import useGetFixtures from "../hooks/useGetFixtures";
 
 export default function Fixtures({ leagueID, season }) {
     const [visibleFixtures, setVisibleFixtures] = useState(10);
-    const [hasMore, setHasMore] = useState(true);
     const { fixtures, loading } = useGetFixtures(leagueID, season);
-
-    useEffect(() => {
-        setVisibleFixtures(10);
-        setHasMore(true);
-    }, [leagueID, season]);
 
     const fetchNextTenFixtures = () => {
         let newAmount = visibleFixtures + 10;
         setVisibleFixtures(newAmount);
-        if (visibleFixtures >= fixtures.length) {
-            setHasMore(false);
-        }
     };
 
     return (
@@ -31,7 +22,7 @@ export default function Fixtures({ leagueID, season }) {
                 <InfiniteScroll
                     dataLength={visibleFixtures}
                     next={fetchNextTenFixtures}
-                    hasMore={hasMore}
+                    hasMore={visibleFixtures <= fixtures.length ? true : false}
                     loader={
                         <Stack alignItems="center" my={4}>
                             <CircularProgress color="secondary" />
