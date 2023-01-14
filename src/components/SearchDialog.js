@@ -74,7 +74,7 @@ export default function SearchDialog() {
                 <DialogTitle>
                     <TextField
                         variant="standard"
-                        label="Search for League"
+                        label="Search by League or Country"
                         onChange={(e) => setSearchTerm(e.target.value)}
                         value={searchTerm}
                         fullWidth
