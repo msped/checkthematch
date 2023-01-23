@@ -8,9 +8,9 @@ import {
     TextField,
 } from "@mui/material";
 
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import DatePicker from "@mui/lab/DatePicker";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 export default function leagueDetails({
     league,
@@ -64,29 +64,33 @@ export default function leagueDetails({
                         </Grid>
                     </Grid>
                     <Grid item xs={12} md={2}>
-                        <LocalizationProvider dateAdapter={AdapterDateFns}>
-                            <Stack spacing={3}>
-                                <DatePicker
-                                    views={["year"]}
-                                    label="Select Season"
-                                    value={season}
-                                    onChange={(newSeason) => {
-                                        let newYear = new Date(
-                                            newSeason
-                                        ).getFullYear();
-                                        setSeason(newYear.toString());
-                                    }}
-                                    minDate={new Date("2010-01-01")}
-                                    maxDate={new Date(`${currentYear}-01-01`)}
-                                    renderInput={(params) => (
-                                        <TextField
-                                            {...params}
-                                            helperText={null}
-                                        />
-                                    )}
-                                />
-                            </Stack>
-                        </LocalizationProvider>
+                        {season ? (
+                            <LocalizationProvider dateAdapter={AdapterDateFns}>
+                                <Stack spacing={3}>
+                                    <DatePicker
+                                        views={["year"]}
+                                        label="Select Season"
+                                        value={season}
+                                        onChange={(newSeason) => {
+                                            let newYear = new Date(
+                                                newSeason
+                                            ).getFullYear();
+                                            setSeason(newYear.toString());
+                                        }}
+                                        minDate={new Date("2010-01-01")}
+                                        maxDate={
+                                            new Date(`${currentYear}-01-01`)
+                                        }
+                                        renderInput={(params) => (
+                                            <TextField
+                                                {...params}
+                                                helperText={null}
+                                            />
+                                        )}
+                                    />
+                                </Stack>
+                            </LocalizationProvider>
+                        ) : null}
                     </Grid>
                 </Grid>
             </CardContent>
