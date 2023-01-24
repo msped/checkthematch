@@ -12,12 +12,8 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
-export default function leagueDetails({
-    league,
-    season,
-    setSeason,
-    currentYear,
-}) {
+export default function leagueDetails({ league, season, setSeason }) {
+    const currentYear = new Date().getFullYear().toString();
     return (
         <Card>
             <CardContent>
@@ -71,7 +67,7 @@ export default function leagueDetails({
                                         views={["year"]}
                                         openTo="year"
                                         label="Select Season"
-                                        value={season}
+                                        value={`${season}`}
                                         onChange={(newSeason) => {
                                             let newYear = new Date(
                                                 newSeason
