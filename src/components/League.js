@@ -10,16 +10,15 @@ import LeagueDetails from "../components/LeagueDetails";
 import Fixtures from "../components/Fixtures";
 
 export default function League() {
-    const currentYear = new Date().getFullYear().toString();
-    const [season, setSeason] = useState(currentYear);
+    const [season, setSeason] = useState();
 
     let { league_id } = useParams();
-
-    const { league, loading } = useGetLeague(league_id);
 
     const handleSetSeason = (value) => {
         setSeason(value);
     };
+
+    const { league, loading } = useGetLeague(league_id, handleSetSeason);
 
     return (
         <Container maxWidth="md">
@@ -32,7 +31,6 @@ export default function League() {
                             league={league}
                             season={season}
                             setSeason={handleSetSeason}
-                            currentYear={currentYear}
                         />
                     )}
                 </Grid>
