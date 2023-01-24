@@ -69,6 +69,7 @@ export default function leagueDetails({
                                 <Stack spacing={3}>
                                     <DatePicker
                                         views={["year"]}
+                                        openTo="year"
                                         label="Select Season"
                                         value={season}
                                         onChange={(newSeason) => {
